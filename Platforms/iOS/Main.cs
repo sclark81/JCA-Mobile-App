@@ -4,7 +4,7 @@ namespace JCA.Mobile;
 
 public class Program
 {
-	public static void Main(string[] args)
+	static void Main(string[] args)
 	{
 		UIApplication.Main(args, null, typeof(AppDelegate));
 	}
