@@ -1,6 +1,6 @@
 namespace JCA.Mobile;
 
-public partial class AppShell : Shell
+public partial class AppShell : Microsoft.Maui.Controls.Shell
 {
 	public AppShell()
 	{

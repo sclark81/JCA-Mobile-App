@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
@@ -11,9 +10,9 @@
 
     <Grid RowDefinitions="Auto, *">
         <!-- Header -->
-        <VerticalStackLayout Grid.Row="0" Padding="20" BackgroundColor="{DynamicResource PrimaryColor}">
-            <Label Text="Joshua Christian Academy" FontSize="20" FontAttributes="Bold" TextColor="White" />
-            <Label Text="Equipping Students for Excellence" FontSize="12" TextColor="White" />
+        <VerticalStackLayout Grid.Row="0" Padding="20">
+            <Label Text="Joshua Christian Academy" FontSize="20" FontAttributes="Bold" TextColor="#1B3A5C" />
+            <Label Text="Equipping Students for Excellence" FontSize="12" TextColor="#C9A84C" />
         </VerticalStackLayout>
 
         <!-- Feed -->
