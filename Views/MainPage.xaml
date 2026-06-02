@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
+             x:Class="JCA.Mobile.Views.MainPage"
+             Title="JCA Family App">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Padding="20" BackgroundColor="{DynamicResource PrimaryColor}">
+            <Label Text="Joshua Christian Academy" FontSize="20" FontAttributes="Bold" TextColor="White" />
+            <Label Text="Equipping Students for Excellence" FontSize="12" TextColor="White" />
+        </VerticalStackLayout>
+
+        <!-- Feed -->
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Notifications}" Padding="15">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,0,0,10" Padding="15" CornerRadius="15" HasShadow="True">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Body}" FontSize="14" TextColor="Gray" />
+                                <Label Text="{Binding Timestamp}" FontSize="11" TextColor="LightGray" />
+                            </VerticalStackLayout>
+                            
+                            <Button Grid.Column="1" 
+                                    Text="X" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DismissCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    BackgroundColor="Transparent"
+                                    TextColor="Gray"
+                                    WidthRequest="40"
+                                    HeightRequest="40" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="✨" FontSize="50" HorizontalOptions="Center" />
+                    <Label Text="No new notifications" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="You're all caught up!" FontSize="14" TextColor="Gray" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
+</ContentPage>
