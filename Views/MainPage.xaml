@@ -12,29 +12,32 @@
         <!-- Header -->
         <ContentView Grid.Row="0" Padding="20">
             <VerticalStackLayout>
-                <Label Text="Joshua Christian Academy" FontSize="20" FontAttributes="Bold" TextColor="#1B3A5C" />
-                <Label Text="Equipping Students for Excellence" FontSize="12" TextColor="#C9A84C" />
+                <Label Text="Joshua Christian Academy" FontSize="22" FontAttributes="Bold" TextColor="#1B3A5C" />
+                <Label Text="Equipping Students for Excellence" FontSize="13" TextColor="#C9A84C" />
             </VerticalStackLayout>
         </ContentView>
 
         <!-- Feed -->
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Notifications}" Padding="15">
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Notifications}"
+                        Margin="15,0">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="0,0,0,10" Padding="15" CornerRadius="15" HasShadow="True">
+                    <Frame Margin="0,0,0,12" Padding="15" CornerRadius="15" HasShadow="True" BorderColor="#E5E7EB">
                         <Grid ColumnDefinitions="*, Auto">
                             <VerticalStackLayout Grid.Column="0" Spacing="5">
-                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" />
-                                <Label Text="{Binding Body}" FontSize="14" TextColor="Gray" />
-                                <Label Text="{Binding Timestamp}" FontSize="11" TextColor="LightGray" />
+                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" TextColor="#111827" />
+                                <Label Text="{Binding Body}" FontSize="14" TextColor="#4B5563" />
+                                <Label Text="{Binding Timestamp}" FontSize="11" TextColor="#9CA3AF" />
                             </VerticalStackLayout>
                             
                             <Button Grid.Column="1" 
-                                    Text="X" 
+                                    Text="✕" 
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DismissCommand}"
                                     CommandParameter="{Binding Id}"
                                     BackgroundColor="Transparent"
-                                    TextColor="Gray"
+                                    TextColor="#9CA3AF"
+                                    FontAttributes="Bold"
                                     WidthRequest="40"
                                     HeightRequest="40" />
                         </Grid>
@@ -43,10 +46,10 @@
             </CollectionView.ItemTemplate>
             
             <CollectionView.EmptyView>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <Label Text="✨" FontSize="50" HorizontalOptions="Center" />
-                    <Label Text="No new notifications" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
-                    <Label Text="You're all caught up!" FontSize="14" TextColor="Gray" HorizontalOptions="Center" />
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="40">
+                    <Label Text="✨" FontSize="60" HorizontalOptions="Center" />
+                    <Label Text="No new notifications" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#111827" />
+                    <Label Text="You're all caught up!" FontSize="15" TextColor="#6B7280" HorizontalOptions="Center" />
                 </VerticalStackLayout>
             </CollectionView.EmptyView>
         </CollectionView>
