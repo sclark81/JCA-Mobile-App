@@ -10,10 +10,12 @@
 
     <Grid RowDefinitions="Auto, *">
         <!-- Header -->
-        <VerticalStackLayout Grid.Row="0" Padding="20">
-            <Label Text="Joshua Christian Academy" FontSize="20" FontAttributes="Bold" TextColor="#1B3A5C" />
-            <Label Text="Equipping Students for Excellence" FontSize="12" TextColor="#C9A84C" />
-        </VerticalStackLayout>
+        <ContentView Grid.Row="0" Padding="20">
+            <VerticalStackLayout>
+                <Label Text="Joshua Christian Academy" FontSize="20" FontAttributes="Bold" TextColor="#1B3A5C" />
+                <Label Text="Equipping Students for Excellence" FontSize="12" TextColor="#C9A84C" />
+            </VerticalStackLayout>
+        </ContentView>
 
         <!-- Feed -->
         <CollectionView Grid.Row="1" ItemsSource="{Binding Notifications}" Padding="15">
