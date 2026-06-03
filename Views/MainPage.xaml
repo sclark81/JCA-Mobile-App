@@ -2,56 +2,92 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
              x:Class="JCA.Mobile.Views.MainPage"
-             Title="JCA Family App">
+             Title="JCA Family App"
+             BackgroundColor="#F7F5F0">
 
     <ContentPage.BindingContext>
         <vm:MainViewModel />
     </ContentPage.BindingContext>
 
     <Grid RowDefinitions="Auto, *">
-        <!-- Header -->
-        <ContentView Grid.Row="0" Padding="20">
+        <!-- Header: Jaguar Theme (Navy & Gold) -->
+        <ContentView Grid.Row="0" Padding="25,30,25,20" BackgroundColor="#1B3A5C">
             <VerticalStackLayout>
-                <Label Text="Joshua Christian Academy" FontSize="22" FontAttributes="Bold" TextColor="#1B3A5C" />
-                <Label Text="Equipping Students for Excellence" FontSize="13" TextColor="#C9A84C" />
+                <Label Text="Joshua Christian Academy" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       TextColor="White" />
+                <Label Text="Equipping Students for Excellence" 
+                       FontSize="14" 
+                       TextColor="#C9A84C" />
             </VerticalStackLayout>
         </ContentView>
 
-        <!-- Feed -->
-        <CollectionView Grid.Row="1" 
-                        ItemsSource="{Binding Notifications}"
-                        Margin="15,0">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Margin="0,0,0,12" Padding="15" CornerRadius="15" HasShadow="True" BorderColor="#E5E7EB">
-                        <Grid ColumnDefinitions="*, Auto">
-                            <VerticalStackLayout Grid.Column="0" Spacing="5">
-                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" TextColor="#111827" />
-                                <Label Text="{Binding Body}" FontSize="14" TextColor="#4B5563" />
-                                <Label Text="{Binding Timestamp}" FontSize="11" TextColor="#9CA3AF" />
-                            </VerticalStackLayout>
-                            
-                            <Button Grid.Column="1" 
-                                    Text="✕" 
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DismissCommand}"
-                                    CommandParameter="{Binding Id}"
-                                    BackgroundColor="Transparent"
-                                    TextColor="#9CA3AF"
-                                    FontAttributes="Bold"
-                                    WidthRequest="40"
-                                    HeightRequest="40" />
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
+        <!-- Feed Area -->
+        <RefreshView Grid.Row="1" 
+                     Command="{Binding RefreshCommand}" 
+                     IsRefreshing="{Binding IsRefreshing}">
             
-            <CollectionView.EmptyView>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="40">
-                    <Label Text="✨" FontSize="60" HorizontalOptions="Center" />
-                    <Label Text="No new notifications" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#111827" />
-                    <Label Text="You're all caught up!" FontSize="15" TextColor="#6B7280" HorizontalOptions="Center" />
-                </VerticalStackLayout>
-            </CollectionView.EmptyView>
-        </CollectionView>
+            <CollectionView ItemsSource="{Binding Announcements}"
+                            Margin="15,10">
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,0,0,12" 
+                               Padding="15" 
+                               CornerRadius="15" 
+                               HasShadow="True" 
+                               BorderColor="#E5E7EB" 
+                               BackgroundColor="White">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                    <Label Text="{Binding Title}" 
+                                           FontAttributes="Bold" 
+                                           FontSize="17" 
+                                           TextColor="#111827" />
+                                    <Label Text="{Binding Content}" 
+                                           FontSize="14" 
+                                           TextColor="#4B5563" />
+                                    <Label Text="{Binding PublishDate, StringFormat='{0:MMM dd, yyyy}'}" 
+                                           FontSize="11" 
+                                           TextColor="#9CA3AF" />
+                                </VerticalStackLayout>
+                                
+                                <Button Grid.Column="1" 
+                                        Text="✕" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DismissCommand}"
+                                        CommandParameter="{Binding Id}"
+                                        BackgroundColor="Transparent"
+                                        TextColor="#9CA3AF"
+                                        FontAttributes="Bold"
+                                        WidthRequest="44"
+                                        HeightRequest="44" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout VerticalOptions="Center" 
+                                         HorizontalOptions="Center" 
+                                         Padding="50" 
+                                         Spacing="10">
+                        <Label Text="🐆" 
+                               FontSize="70" 
+                               HorizontalOptions="Center" />
+                        <Label Text="No new announcements" 
+                               FontSize="20" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Center" 
+                               TextColor="#1B3A5C" />
+                        <Label Text="You're all caught up for today!" 
+                               FontSize="15" 
+                               TextColor="#6B7280" 
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                
+            </CollectionView>
+        </RefreshView>
     </Grid>
 </ContentPage>
