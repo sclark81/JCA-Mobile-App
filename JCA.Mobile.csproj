@@ -14,8 +14,8 @@
 		<ApplicationIdGuid>7ca57482-1433-469b-986c-0e7782b7f5f0</ApplicationIdGuid>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
+		<AndroidManifestMerger>manifestmerger.jar</AndroidManifestMerger>
 		<!-- Explicitly point to the manifest in the root as requested by your build error -->
-		<AndroidManifest>AndroidManifest.xml</AndroidManifest>
 	</PropertyGroup>
 
 	<ItemGroup>
