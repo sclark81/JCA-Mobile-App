@@ -7,7 +7,9 @@ public class AnnouncementService
 {
     private readonly HttpClient _httpClient = new();
     // TODO: Update this to your production Jaguar Tools URL
-    private const string BaseUrl = "https://localhost:7251/api/mobile/announcements";
+    private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
+         ? "http://10.0.2.2:58564/api/mobile/announcements" // Emulator host IP and HTTP port
+         : "https://localhost:58564/api/mobile/announcements"; // Standard local PC port
 
     public async Task<List<Announcement>> GetAnnouncementsAsync()
     {

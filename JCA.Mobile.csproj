@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
@@ -16,6 +16,11 @@
 		<ApplicationVersion>1</ApplicationVersion>
 		<AndroidManifestMerger>manifestmerger.jar</AndroidManifestMerger>
 		<!-- Explicitly point to the manifest in the root as requested by your build error -->
+		<RuntimeIdentifier Condition="$(TargetFramework.Contains('-android'))">android-x64</RuntimeIdentifier>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+	  <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
 	<ItemGroup>

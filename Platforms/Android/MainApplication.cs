@@ -5,6 +5,7 @@ using Microsoft.Maui.Hosting;
 
 namespace JCA.Mobile;
 
+[Application]
 public class MainApplication : MauiApplication
 {
 	public MainApplication(IntPtr handle, JniHandleOwnership ownership)

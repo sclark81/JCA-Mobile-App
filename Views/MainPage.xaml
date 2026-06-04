@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
              x:Class="JCA.Mobile.Views.MainPage"
-             Title="JCA Family App"
+             Title="JCA Mobile App"
              BackgroundColor="#F7F5F0">
 
     <ContentPage.BindingContext>
@@ -11,7 +11,7 @@
 
     <Grid RowDefinitions="Auto, *">
         <!-- Header: Jaguar Theme (Navy & Gold) -->
-        <ContentView Grid.Row="0" Padding="25,30,25,20" BackgroundColor="#1B3A5C">
+        <ContentView Grid.Row="0" Padding="25,30,25,20" BackgroundColor="#CC0000">
             <VerticalStackLayout>
                 <Label Text="Joshua Christian Academy" 
                        FontSize="24" 
@@ -19,7 +19,7 @@
                        TextColor="White" />
                 <Label Text="Equipping Students for Excellence" 
                        FontSize="14" 
-                       TextColor="#C9A84C" />
+                       TextColor="#333333" />
             </VerticalStackLayout>
         </ContentView>
 
@@ -27,10 +27,10 @@
         <RefreshView Grid.Row="1" 
                      Command="{Binding RefreshCommand}" 
                      IsRefreshing="{Binding IsRefreshing}">
-            
+
             <CollectionView ItemsSource="{Binding Announcements}"
                             Margin="15,10">
-                
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Margin="0,0,0,12" 
@@ -52,29 +52,26 @@
                                            FontSize="11" 
                                            TextColor="#9CA3AF" />
                                 </VerticalStackLayout>
-                                
+
                                 <Button Grid.Column="1" 
-                                        Text="✕" 
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DismissCommand}"
-                                        CommandParameter="{Binding Id}"
-                                        BackgroundColor="Transparent"
-                                        TextColor="#9CA3AF"
-                                        FontAttributes="Bold"
-                                        WidthRequest="44"
-                                        HeightRequest="44" />
+                                    Text="✕" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DismissCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    BackgroundColor="Transparent"
+                                    TextColor="#9CA3AF"
+                                    FontAttributes="Bold"
+                                    WidthRequest="44"
+                                    HeightRequest="44" />
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                
+
                 <CollectionView.EmptyView>
                     <VerticalStackLayout VerticalOptions="Center" 
                                          HorizontalOptions="Center" 
                                          Padding="50" 
                                          Spacing="10">
-                        <Label Text="🐆" 
-                               FontSize="70" 
-                               HorizontalOptions="Center" />
                         <Label Text="No new announcements" 
                                FontSize="20" 
                                FontAttributes="Bold" 
@@ -86,7 +83,7 @@
                                HorizontalOptions="Center" />
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
-                
+
             </CollectionView>
         </RefreshView>
     </Grid>
