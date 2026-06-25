@@ -17,6 +17,10 @@
                 <DataTemplate x:DataType="models:MaintenanceTicket">
                     <Frame Margin="0,0,0,10" Padding="15" CornerRadius="10" HasShadow="True">
                         <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MaintenanceViewModel}}, Path=GoToDetailsCommand}" 
+                                                      CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
                             <VerticalStackLayout Grid.Column="0">
                                 <Label Text="{Binding Details}" FontAttributes="Bold" FontSize="16" MaxLines="2" />
                                 <Label Text="{Binding Campus}" FontSize="13" TextColor="#4B5563" />

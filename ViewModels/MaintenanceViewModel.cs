@@ -3,6 +3,7 @@ using JCA.Mobile.Models;
 using JCA.Mobile.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using JCA.Mobile.Views;
 
 namespace JCA.Mobile.ViewModels
 {
@@ -40,10 +41,11 @@ namespace JCA.Mobile.ViewModels
         }
 
         [RelayCommand]
-        public async Task UpdateStatusAsync(MaintenanceTicket ticket)
+        public async Task GoToDetailsAsync(MaintenanceTicket ticket)
         {
-            // Simple toggle for demo or logic for a picker
-            // We'll likely handle the actual picking in the UI or a separate page
+            if (ticket == null) return;
+
+            await Shell.Current.GoToAsync($"{nameof(MaintenanceDetailPage)}?id={ticket.Id}");
         }
     }
 }

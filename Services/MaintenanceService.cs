@@ -28,6 +28,24 @@ namespace JCA.Mobile.Services
             return new List<MaintenanceTicket>();
         }
 
+        public async Task<MaintenanceTicket?> GetTicketByIdAsync(int id)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"{BaseUrl}/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<MaintenanceTicket>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"API Error: {ex.Message}");
+            }
+            return null;
+        }
+
         public async Task<bool> UpdateTicketStatusAsync(int id, TicketStatus status, string? notes)
         {
             try
