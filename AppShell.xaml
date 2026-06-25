@@ -5,9 +5,13 @@
     xmlns:views="clr-namespace:JCA.Mobile.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Announcements">
+            <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" />
+        </Tab>
+        <Tab Title="Maintenance">
+            <ShellContent ContentTemplate="{DataTemplate views:MaintenancePage}" Route="MaintenancePage" />
+        </Tab>
+    </TabBar>
 
 </Shell>
