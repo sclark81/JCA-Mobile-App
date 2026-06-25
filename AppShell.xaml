@@ -6,9 +6,13 @@
     Shell.FlyoutBehavior="Disabled"
     BackgroundColor="#CC0000">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Announcements">
+            <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" />
+        </Tab>
+        <Tab Title="Maintenance">
+            <ShellContent ContentTemplate="{DataTemplate views:MaintenancePage}" Route="MaintenancePage" />
+        </Tab>
+    </TabBar>
 
 </Shell>

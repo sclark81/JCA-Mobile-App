@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
+             xmlns:models="clr-namespace:JCA.Mobile.Models"
+             x:Class="JCA.Mobile.Views.MaintenancePage"
+             Title="Maintenance Tickets"
+             BackgroundColor="#F7F5F0">
+
+    <ContentPage.BindingContext>
+        <vm:MaintenanceViewModel />
+    </ContentPage.BindingContext>
+
+    <RefreshView Command="{Binding LoadTicketsCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <CollectionView ItemsSource="{Binding Tickets}" Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:MaintenanceTicket">
+                    <Frame Margin="0,0,0,10" Padding="15" CornerRadius="10" HasShadow="True">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MaintenanceViewModel}}, Path=GoToDetailsCommand}" 
+                                                      CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="{Binding Details}" FontAttributes="Bold" FontSize="16" MaxLines="2" />
+                                <Label Text="{Binding Campus}" FontSize="13" TextColor="#4B5563" />
+                                <Label Text="{Binding Room}" FontSize="13" TextColor="#4B5563" />
+                            </VerticalStackLayout>
+                            
+                            <VerticalStackLayout Grid.Column="1" HorizontalOptions="End">
+                                <Label Text="{Binding Status}" FontSize="12" FontAttributes="Bold" HorizontalTextAlignment="End" />
+                                <Label Text="{Binding Priority}" FontSize="11" TextColor="{Binding PriorityColor}" HorizontalTextAlignment="End" />
+                            </VerticalStackLayout>
+                            
+                            <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0"
+                                   Text="{Binding DateSubmitted, StringFormat='Submitted: {0:MM/dd/yyyy}'}" 
+                                   FontSize="11" TextColor="#9CA3AF" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
