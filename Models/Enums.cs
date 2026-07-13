@@ -10,6 +10,14 @@ namespace JCA.Mobile.Models
         All = 3
     }
 
+    public enum TargetAudience
+    {
+        All = 0,
+        Faculty = 1,
+        Students = 2,
+        Parents = 3
+    }
+
     public enum MaintenanceCategory
     {
         [Display(Name = "Safety Issue")] Safety = 0,

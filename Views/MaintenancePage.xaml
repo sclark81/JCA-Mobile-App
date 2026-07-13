@@ -39,6 +39,18 @@
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" 
+                         HorizontalOptions="Center" 
+                         Padding="50" 
+                         Spacing="10">
+                    <Label Text="No open tickets" 
+               FontSize="20" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" 
+               TextColor="#1B3A5C" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
         </CollectionView>
     </RefreshView>
 </ContentPage>

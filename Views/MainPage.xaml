@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
              x:Class="JCA.Mobile.Views.MainPage"
-             Title="JCA Mobile App"
+             Title="Joshua Christian Academy"
              BackgroundColor="#F7F5F0">
 
     <ContentPage.BindingContext>
@@ -11,7 +11,7 @@
 
     <Grid RowDefinitions="Auto, *">
         <!-- Header: Jaguar Theme (Navy & Gold) -->
-        <ContentView Grid.Row="0" Padding="25,30,25,20" BackgroundColor="#CC0000">
+        <!--ContentView Grid.Row="0" Padding="25,30,25,20" BackgroundColor="#CC0000">
             <VerticalStackLayout>
                 <Label Text="Joshua Christian Academy" 
                        FontSize="24" 
@@ -21,7 +21,7 @@
                        FontSize="14" 
                        TextColor="#333333" />
             </VerticalStackLayout>
-        </ContentView>
+        </ContentView-->
 
         <!-- Feed Area -->
         <RefreshView Grid.Row="1" 
