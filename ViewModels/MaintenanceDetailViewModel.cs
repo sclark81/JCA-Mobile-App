@@ -6,13 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Maui.Media;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
 
 namespace JCA.Mobile.ViewModels
 {
     [QueryProperty(nameof(TicketId), "id")]
     public partial class MaintenanceDetailViewModel : ObservableObject
     {
-        private readonly MaintenanceService _service = new();
+        private readonly MaintenanceService _service = new MaintenanceService();
 
         [ObservableProperty]
         private int ticketId;
@@ -35,11 +38,11 @@ namespace JCA.Mobile.ViewModels
         [ObservableProperty]
         private string? selectedImagePath;
 
-        public List<TicketStatus> StatusOptions { get; } = Enum.GetValues<TicketStatus>().Cast<TicketStatus>().ToList();
+        public List<TicketStatus> StatusOptions { get; } = Enum.GetValues(typeof(TicketStatus)).Cast<TicketStatus>().ToList();
 
         partial void OnTicketIdChanged(int value)
         {
-            _ = LoadTicketAsync(value);
+            Task _ = LoadTicketAsync(value);
         }
 
         private async Task LoadTicketAsync(int id)
@@ -59,11 +62,11 @@ namespace JCA.Mobile.ViewModels
         [RelayCommand]
         public async Task TakePhotoAsync()
         {
-            var photo = await MediaPicker.Default.CapturePhotoAsync();
+            FileResult? photo = await MediaPicker.Default.CapturePhotoAsync();
             if (photo != null)
             {
                 IsBusy = true;
-                var serverPath = await _service.UploadImageAsync(photo);
+                string? serverPath = await _service.UploadImageAsync(photo);
                 if (serverPath != null && Ticket != null)
                 {
                     Ticket.ImagePath = serverPath;
@@ -83,7 +86,7 @@ namespace JCA.Mobile.ViewModels
             Ticket.Notes = AdminNotes;
             Ticket.DueDate = DueDate;
 
-            var success = await _service.UpdateTicketAsync(Ticket);
+            bool success = await _service.UpdateTicketAsync(Ticket);
             IsBusy = false;
 
             if (success)

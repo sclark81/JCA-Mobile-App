@@ -4,34 +4,38 @@ using JCA.Mobile.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JCA.Mobile.Views;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JCA.Mobile.ViewModels
 {
     public partial class MaintenanceViewModel : ObservableObject
     {
-        private readonly MaintenanceService _service = new();
+        private readonly MaintenanceService _service = new MaintenanceService();
 
         [ObservableProperty]
-        private ObservableCollection<MaintenanceTicket> tickets = new();
+        private ObservableCollection<MaintenanceTicket> tickets = new ObservableCollection<MaintenanceTicket>();
 
         [ObservableProperty]
         private bool isRefreshing;
 
         public MaintenanceViewModel()
         {
-            _ = LoadTicketsAsync();
+            Task _ = LoadTicketsAsync();
         }
 
         [RelayCommand]
         public async Task LoadTicketsAsync()
         {
             IsRefreshing = true;
-            var data = await _service.GetTicketsAsync();
+            List<MaintenanceTicket> data = await _service.GetTicketsAsync();
             
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 Tickets.Clear();
-                foreach (var ticket in data)
+                foreach (MaintenanceTicket ticket in data)
                 {
                     Tickets.Add(ticket);
                 }
