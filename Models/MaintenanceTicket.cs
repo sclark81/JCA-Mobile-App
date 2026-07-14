@@ -25,5 +25,10 @@ namespace JCA.Mobile.Models
             TicketPriority.Medium => "#FF8C00",
             _ => "#4B5563"
         };
+
+        // Added for easy access in the app
+        public string FullImagePath => string.IsNullOrEmpty(ImagePath) 
+            ? "placeholder_image.png" 
+            : $"https://tools.jcadm.org{ImagePath}"; // Update with actual prod domain later
     }
 }

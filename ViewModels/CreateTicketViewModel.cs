@@ -25,11 +25,37 @@ namespace JCA.Mobile.ViewModels
         private TicketPriority selectedPriority = TicketPriority.Medium;
 
         [ObservableProperty]
+        private DateTime dueDate = DateTime.Now.AddDays(7);
+
+        [ObservableProperty]
+        private string? imagePath;
+
+        [ObservableProperty]
+        private string previewImage = "placeholder_image.png";
+
+        [ObservableProperty]
         private bool isBusy;
 
         public List<Campus> CampusOptions { get; } = Enum.GetValues<Campus>().Cast<Campus>().ToList();
         public List<MaintenanceCategory> CategoryOptions { get; } = Enum.GetValues<MaintenanceCategory>().Cast<MaintenanceCategory>().ToList();
         public List<TicketPriority> PriorityOptions { get; } = Enum.GetValues<TicketPriority>().Cast<TicketPriority>().ToList();
+
+        [RelayCommand]
+        public async Task TakePhotoAsync()
+        {
+            var photo = await MediaPicker.Default.CapturePhotoAsync();
+            if (photo != null)
+            {
+                IsBusy = true;
+                var serverPath = await _service.UploadImageAsync(photo);
+                if (serverPath != null)
+                {
+                    ImagePath = serverPath;
+                    PreviewImage = $"https://tools.jcadm.org{serverPath}";
+                }
+                IsBusy = false;
+            }
+        }
 
         [RelayCommand]
         public async Task SaveTicketAsync()
@@ -48,8 +74,10 @@ namespace JCA.Mobile.ViewModels
                 Campus = SelectedCampus,
                 Category = SelectedCategory,
                 Priority = SelectedPriority,
-                SubmittedBy = "Maintenance App", // Default for now
-                SubmittedEmail = "utility@jcadm.org", // Default for now
+                DueDate = DueDate,
+                ImagePath = ImagePath,
+                SubmittedBy = "Maintenance App", 
+                SubmittedEmail = "utility@jcadm.org",
                 DateSubmitted = DateTime.Now,
                 Status = TicketStatus.Open
             };
@@ -63,7 +91,7 @@ namespace JCA.Mobile.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Error", "Failed to create ticket. Please try again.", "OK");
+                await Shell.Current.DisplayAlert("Error", "Failed to create ticket.", "OK");
             }
         }
 

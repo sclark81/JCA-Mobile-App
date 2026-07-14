@@ -6,26 +6,9 @@ namespace JCA.Mobile.Services
 {
     public class MaintenanceService
     {
-        private readonly HttpClient _httpClient;
-
-        private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
-        ? "http://10.0.2.2:58564/api/mobile/maintenance" // Emulator host IP and HTTP port
-        : "https://localhost:58563/api/mobile/maintenance";
-
-        public MaintenanceService()
-        {
-            // If we are debugging, configure HttpClient to ignore local SSL certificate mismatches
-        #if DEBUG
-            var handler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-            };
-            _httpClient = new HttpClient(handler);
-        #else
-            // Standard secure client for production
-            _httpClient = new HttpClient();
-        #endif
-        }
+        private readonly HttpClient _httpClient = new();
+        // TODO: Update this to your production Jaguar Tools URL
+        private const string BaseUrl = "https://localhost:7251/api/mobile/maintenance";
 
         public async Task<List<MaintenanceTicket>> GetTicketsAsync()
         {
@@ -63,15 +46,13 @@ namespace JCA.Mobile.Services
             return null;
         }
 
-        public async Task<bool> UpdateTicketStatusAsync(int id, TicketStatus status, string? notes)
+        public async Task<bool> UpdateTicketAsync(MaintenanceTicket ticket)
         {
             try
             {
-                var request = new { Id = id, Status = status, AdminNotes = notes };
-                var json = JsonConvert.SerializeObject(request);
+                var json = JsonConvert.SerializeObject(ticket);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                var response = await _httpClient.PostAsync($"{BaseUrl}/update-status", content);
+                var response = await _httpClient.PutAsync(BaseUrl, content);
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
@@ -95,6 +76,31 @@ namespace JCA.Mobile.Services
                 System.Diagnostics.Debug.WriteLine($"API Error: {ex.Message}");
                 return false;
             }
+        }
+
+        public async Task<string?> UploadImageAsync(FileResult file)
+        {
+            try
+            {
+                using var stream = await file.OpenReadAsync();
+                var content = new MultipartFormDataContent();
+                var imageContent = new StreamContent(stream);
+                imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
+                content.Add(imageContent, "file", file.FileName);
+
+                var response = await _httpClient.PostAsync($"{BaseUrl}/upload-image", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<dynamic>(responseString);
+                    return result?.ImagePath;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Upload Error: {ex.Message}");
+            }
+            return null;
         }
     }
 }

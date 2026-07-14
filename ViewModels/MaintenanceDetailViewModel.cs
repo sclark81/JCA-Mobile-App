@@ -25,6 +25,12 @@ namespace JCA.Mobile.ViewModels
         [ObservableProperty]
         private TicketStatus selectedStatus;
 
+        [ObservableProperty]
+        private DateTime dueDate;
+
+        [ObservableProperty]
+        private string? selectedImagePath;
+
         public List<TicketStatus> StatusOptions { get; } = Enum.GetValues<TicketStatus>().Cast<TicketStatus>().ToList();
 
         partial void OnTicketIdChanged(int value)
@@ -40,8 +46,27 @@ namespace JCA.Mobile.ViewModels
             {
                 AdminNotes = Ticket.Notes;
                 SelectedStatus = Ticket.Status;
+                DueDate = Ticket.DueDate ?? DateTime.Now.AddDays(7);
+                SelectedImagePath = Ticket.FullImagePath;
             }
             IsBusy = false;
+        }
+
+        [RelayCommand]
+        public async Task TakePhotoAsync()
+        {
+            var photo = await MediaPicker.Default.CapturePhotoAsync();
+            if (photo != null)
+            {
+                IsBusy = true;
+                var serverPath = await _service.UploadImageAsync(photo);
+                if (serverPath != null && Ticket != null)
+                {
+                    Ticket.ImagePath = serverPath;
+                    SelectedImagePath = Ticket.FullImagePath;
+                }
+                IsBusy = false;
+            }
         }
 
         [RelayCommand]
@@ -50,7 +75,11 @@ namespace JCA.Mobile.ViewModels
             if (Ticket == null) return;
 
             IsBusy = true;
-            var success = await _service.UpdateTicketStatusAsync(Ticket.Id, SelectedStatus, AdminNotes);
+            Ticket.Status = SelectedStatus;
+            Ticket.Notes = AdminNotes;
+            Ticket.DueDate = DueDate;
+
+            var success = await _service.UpdateTicketAsync(Ticket);
             IsBusy = false;
 
             if (success)
@@ -59,7 +88,7 @@ namespace JCA.Mobile.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Error", "Failed to update ticket status.", "OK");
+                await Shell.Current.DisplayAlert("Error", "Failed to update ticket.", "OK");
             }
         }
     }

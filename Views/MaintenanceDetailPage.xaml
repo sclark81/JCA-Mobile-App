@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
-             xmlns:models="clr-namespace:JCA.Mobile.Models"
              x:Class="JCA.Mobile.Views.MaintenanceDetailPage"
              Title="Ticket Details"
              BackgroundColor="#F7F5F0">
@@ -26,27 +25,52 @@
 
             <BoxView HeightRequest="1" Color="#E5E7EB" />
 
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Location" FontAttributes="Bold" FontSize="14" />
-                <Label Text="{Binding Ticket.Campus}" FontSize="16" />
-                <Label Text="{Binding Ticket.Room}" FontSize="16" />
+            <!-- Submitter Info -->
+            <VerticalStackLayout Spacing="2">
+                <Label Text="Submitted By" FontAttributes="Bold" FontSize="12" TextColor="#4B5563" />
+                <Label Text="{Binding Ticket.SubmittedBy}" FontSize="16" />
+                <Label Text="{Binding Ticket.SubmittedEmail}" FontSize="14" TextColor="#4B5563" />
             </VerticalStackLayout>
 
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Category" FontAttributes="Bold" FontSize="14" />
-                <Label Text="{Binding Ticket.Category}" FontSize="16" />
-            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="20">
+                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                    <Label Text="Location" FontAttributes="Bold" FontSize="14" />
+                    <Label Text="{Binding Ticket.Campus}" FontSize="16" />
+                    <Label Text="{Binding Ticket.Room}" FontSize="16" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                    <Label Text="Category" FontAttributes="Bold" FontSize="14" />
+                    <Label Text="{Binding Ticket.Category}" FontSize="16" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Image View/Capture -->
+            <Label Text="Photo" FontAttributes="Bold" FontSize="14" />
+            <Frame Padding="0" HasShadow="False" BorderColor="#E5E7EB" CornerRadius="10">
+                <Image Source="{Binding SelectedImagePath}" HeightRequest="250" Aspect="AspectFill" />
+            </Frame>
+            <Button Text="📷 Update Photo" Command="{Binding TakePhotoCommand}" 
+                    BackgroundColor="#4B5563" TextColor="White" />
+
+            <!-- Editable Status/Date/Notes -->
+            <BoxView HeightRequest="1" Color="#E5E7EB" Margin="0,10" />
 
             <VerticalStackLayout Spacing="5">
-                <Label Text="Status" FontAttributes="Bold" FontSize="14" />
+                <Label Text="Current Status" FontAttributes="Bold" FontSize="14" />
                 <Picker ItemsSource="{Binding StatusOptions}" SelectedItem="{Binding SelectedStatus}" 
                         BackgroundColor="White" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Spacing="5">
+                <Label Text="Due Date" FontAttributes="Bold" FontSize="14" />
+                <DatePicker Date="{Binding DueDate}" BackgroundColor="White" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
                 <Label Text="Admin Notes" FontAttributes="Bold" FontSize="14" />
-                <Editor Text="{Binding AdminNotes}" HeightRequest="150" BackgroundColor="White" 
-                        Placeholder="Enter notes here..." />
+                <Editor Text="{Binding AdminNotes}" HeightRequest="120" BackgroundColor="White" 
+                        Placeholder="Enter updates or internal notes..." />
             </VerticalStackLayout>
 
             <Button Text="Save Changes" Command="{Binding SaveChangesCommand}" 

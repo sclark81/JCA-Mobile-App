@@ -21,25 +21,42 @@
                 <Entry Text="{Binding Room}" Placeholder="e.g. Room 101, Gym, Hallway" BackgroundColor="White" />
             </VerticalStackLayout>
 
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Campus" FontAttributes="Bold" FontSize="14" />
-                <Picker ItemsSource="{Binding CampusOptions}" SelectedItem="{Binding SelectedCampus}" BackgroundColor="White" />
-            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                    <Label Text="Campus" FontAttributes="Bold" FontSize="14" />
+                    <Picker ItemsSource="{Binding CampusOptions}" SelectedItem="{Binding SelectedCampus}" BackgroundColor="White" />
+                </VerticalStackLayout>
 
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Category" FontAttributes="Bold" FontSize="14" />
-                <Picker ItemsSource="{Binding CategoryOptions}" SelectedItem="{Binding SelectedCategory}" BackgroundColor="White" />
-            </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                    <Label Text="Category" FontAttributes="Bold" FontSize="14" />
+                    <Picker ItemsSource="{Binding CategoryOptions}" SelectedItem="{Binding SelectedCategory}" BackgroundColor="White" />
+                </VerticalStackLayout>
+            </Grid>
 
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Priority" FontAttributes="Bold" FontSize="14" />
-                <Picker ItemsSource="{Binding PriorityOptions}" SelectedItem="{Binding SelectedPriority}" BackgroundColor="White" />
-            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                    <Label Text="Priority" FontAttributes="Bold" FontSize="14" />
+                    <Picker ItemsSource="{Binding PriorityOptions}" SelectedItem="{Binding SelectedPriority}" BackgroundColor="White" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                    <Label Text="Due Date" FontAttributes="Bold" FontSize="14" />
+                    <DatePicker Date="{Binding DueDate}" BackgroundColor="White" />
+                </VerticalStackLayout>
+            </Grid>
 
             <VerticalStackLayout Spacing="5">
                 <Label Text="Details" FontAttributes="Bold" FontSize="14" />
-                <Editor Text="{Binding Details}" Placeholder="Describe the issue..." HeightRequest="150" BackgroundColor="White" />
+                <Editor Text="{Binding Details}" Placeholder="Describe the issue..." HeightRequest="120" BackgroundColor="White" />
             </VerticalStackLayout>
+
+            <!-- Photo Capture -->
+            <Label Text="Attach Photo" FontAttributes="Bold" FontSize="14" />
+            <Frame Padding="0" HasShadow="False" BorderColor="#E5E7EB" CornerRadius="10">
+                <Image Source="{Binding PreviewImage}" HeightRequest="200" Aspect="AspectFill" />
+            </Frame>
+            <Button Text="📷 Capture Issue" Command="{Binding TakePhotoCommand}" 
+                    BackgroundColor="#4B5563" TextColor="White" />
 
             <Grid ColumnDefinitions="*, *" ColumnSpacing="10" Margin="0,20,0,0">
                 <Button Grid.Column="0" Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="#4B5563" TextColor="White" />
