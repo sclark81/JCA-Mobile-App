@@ -9,5 +9,6 @@ public partial class AppShell : Microsoft.Maui.Controls.Shell
 		InitializeComponent();
 
 		Routing.RegisterRoute(nameof(MaintenanceDetailPage), typeof(MaintenanceDetailPage));
+		Routing.RegisterRoute(nameof(CreateTicketPage), typeof(CreateTicketPage));
 	}
 }
