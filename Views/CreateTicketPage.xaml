@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
+             x:Class="JCA.Mobile.Views.CreateTicketPage"
+             Title="New Maintenance Ticket"
+             BackgroundColor="#F7F5F0">
+
+    <ContentPage.BindingContext>
+        <vm:CreateTicketViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" Color="#CC0000" />
+
+            <Label Text="New Ticket Request" FontSize="24" FontAttributes="Bold" TextColor="#1B3A5C" />
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Location/Room" FontAttributes="Bold" FontSize="14" />
+                <Entry Text="{Binding Room}" Placeholder="e.g. Room 101, Gym, Hallway" BackgroundColor="White" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Campus" FontAttributes="Bold" FontSize="14" />
+                <Picker ItemsSource="{Binding CampusOptions}" SelectedItem="{Binding SelectedCampus}" BackgroundColor="White" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Category" FontAttributes="Bold" FontSize="14" />
+                <Picker ItemsSource="{Binding CategoryOptions}" SelectedItem="{Binding SelectedCategory}" BackgroundColor="White" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Priority" FontAttributes="Bold" FontSize="14" />
+                <Picker ItemsSource="{Binding PriorityOptions}" SelectedItem="{Binding SelectedPriority}" BackgroundColor="White" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Details" FontAttributes="Bold" FontSize="14" />
+                <Editor Text="{Binding Details}" Placeholder="Describe the issue..." HeightRequest="150" BackgroundColor="White" />
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="10" Margin="0,20,0,0">
+                <Button Grid.Column="0" Text="Cancel" Command="{Binding CancelCommand}" Style="{StaticResource SecondaryButton}" />
+                <Button Grid.Column="1" Text="Submit Ticket" Command="{Binding SaveTicketCommand}" BackgroundColor="#CC0000" TextColor="White" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

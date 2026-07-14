@@ -47,5 +47,11 @@ namespace JCA.Mobile.ViewModels
 
             await Shell.Current.GoToAsync($"{nameof(MaintenanceDetailPage)}?id={ticket.Id}");
         }
+
+        [RelayCommand]
+        public async Task GoToCreateTicketAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(CreateTicketPage));
+        }
     }
 }

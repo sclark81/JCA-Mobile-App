@@ -80,5 +80,21 @@ namespace JCA.Mobile.Services
                 return false;
             }
         }
+
+        public async Task<bool> CreateTicketAsync(MaintenanceTicket ticket)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(ticket);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync(BaseUrl, content);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"API Error: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

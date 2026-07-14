@@ -11,6 +11,10 @@
         <vm:MaintenanceViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding GoToCreateTicketCommand}" />
+    </ContentPage.ToolbarItems>
+
     <RefreshView Command="{Binding LoadTicketsCommand}" IsRefreshing="{Binding IsRefreshing}">
         <CollectionView ItemsSource="{Binding Tickets}" Margin="10">
             <CollectionView.ItemTemplate>
