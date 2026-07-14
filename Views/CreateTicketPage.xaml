@@ -42,7 +42,7 @@
             </VerticalStackLayout>
 
             <Grid ColumnDefinitions="*, *" ColumnSpacing="10" Margin="0,20,0,0">
-                <Button Grid.Column="0" Text="Cancel" Command="{Binding CancelCommand}" Style="{StaticResource SecondaryButton}" />
+                <Button Grid.Column="0" Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="#4B5563" TextColor="White" />
                 <Button Grid.Column="1" Text="Submit Ticket" Command="{Binding SaveTicketCommand}" BackgroundColor="#CC0000" TextColor="White" />
             </Grid>
         </VerticalStackLayout>
