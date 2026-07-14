@@ -2,6 +2,10 @@ using JCA.Mobile.Models;
 using JCA.Mobile.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.Generic;
+using System.Linq;
+using System;
+using System.Threading.Tasks;
 
 namespace JCA.Mobile.ViewModels
 {
