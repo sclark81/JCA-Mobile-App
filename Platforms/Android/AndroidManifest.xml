@@ -1,13 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.jca.mobile" android:versionCode="1" android:versionName="1.0">
-
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-
-	<application android:allowBackup="true" 
-				 android:supportsRtl="true" 
-				 android:label="JCA Mobile"
-			 android:usesCleartextTraffic="true">
-	</application>
-
+	<application android:allowBackup="true" android:supportsRtl="true" android:label="JCA Tools" android:usesCleartextTraffic="true" android:icon="@mipmap/jca_icon" android:roundIcon="@mipmap/jca_icon"></application>
 </manifest>

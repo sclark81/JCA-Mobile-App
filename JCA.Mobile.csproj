@@ -24,6 +24,26 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<!-- App Icon Configuration -->
+		<MauiIcon Include="Resources/AppIcon/jca_icon.png"
+          ForegroundFile="Resources/AppIcon/jca_icon.png"
+          ForegroundScale="0.50"
+          Color="#0A0E1A" />
+
+		<!-- Splash Screen Configuration -->
+		<MauiSplashScreen Include="Resources\Splash\jca_splash.png" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
