@@ -6,9 +6,26 @@ namespace JCA.Mobile.Services
 {
     public class MaintenanceService
     {
-        private readonly HttpClient _httpClient = new();
+        private readonly HttpClient _httpClient;
         // TODO: Update this to your production Jaguar Tools URL
-        private const string BaseUrl = "https://localhost:7251/api/mobile/maintenance";
+        private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
+         ? "http://10.0.2.2:58564/api/mobile/maintenance" // Emulator host IP and HTTP port
+         : "https://localhost:58563/api/mobile/maintenance"; // Standard local PC port
+
+        public MaintenanceService()
+        {
+            // If we are debugging, configure HttpClient to ignore local SSL certificate mismatches
+#if DEBUG
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+            };
+            _httpClient = new HttpClient(handler);
+#else
+            // Standard secure client for production
+            _httpClient = new HttpClient();
+#endif
+        }
 
         public async Task<List<MaintenanceTicket>> GetTicketsAsync()
         {
