@@ -1,12 +1,17 @@
 using Newtonsoft.Json;
 using JCA.Mobile.Models;
 using System.Text;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System;
+using Microsoft.Maui.Storage;
 
 namespace JCA.Mobile.Services
 {
     public class MaintenanceService
     {
-        private readonly HttpClient _httpClient;
+        private readonly HttpClient _httpClient = new HttpClient();
         // TODO: Update this to your production Jaguar Tools URL
         private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
          ? "http://10.0.2.2:58564/api/mobile/maintenance" // Emulator host IP and HTTP port
@@ -31,10 +36,10 @@ namespace JCA.Mobile.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync(BaseUrl);
+                HttpResponseMessage response = await _httpClient.GetAsync(BaseUrl);
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStringAsync();
+                    string content = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<List<MaintenanceTicket>>(content) ?? new List<MaintenanceTicket>();
                 }
             }
@@ -49,10 +54,10 @@ namespace JCA.Mobile.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/{id}");
+                HttpResponseMessage response = await _httpClient.GetAsync($"{BaseUrl}/{id}");
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStringAsync();
+                    string content = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<MaintenanceTicket>(content);
                 }
             }
@@ -67,9 +72,9 @@ namespace JCA.Mobile.Services
         {
             try
             {
-                var json = JsonConvert.SerializeObject(ticket);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PutAsync(BaseUrl, content);
+                string json = JsonConvert.SerializeObject(ticket);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await _httpClient.PutAsync(BaseUrl, content);
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
@@ -83,9 +88,9 @@ namespace JCA.Mobile.Services
         {
             try
             {
-                var json = JsonConvert.SerializeObject(ticket);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync(BaseUrl, content);
+                string json = JsonConvert.SerializeObject(ticket);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await _httpClient.PostAsync(BaseUrl, content);
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
@@ -99,18 +104,20 @@ namespace JCA.Mobile.Services
         {
             try
             {
-                using var stream = await file.OpenReadAsync();
-                var content = new MultipartFormDataContent();
-                var imageContent = new StreamContent(stream);
-                imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
-                content.Add(imageContent, "file", file.FileName);
-
-                var response = await _httpClient.PostAsync($"{BaseUrl}/upload-image", content);
-                if (response.IsSuccessStatusCode)
+                using (Stream stream = await file.OpenReadAsync())
                 {
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<dynamic>(responseString);
-                    return result?.ImagePath;
+                    MultipartFormDataContent content = new MultipartFormDataContent();
+                    StreamContent imageContent = new StreamContent(stream);
+                    imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
+                    content.Add(imageContent, "file", file.FileName);
+
+                    HttpResponseMessage response = await _httpClient.PostAsync($"{BaseUrl}/upload-image", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseString = await response.Content.ReadAsStringAsync();
+                        dynamic? result = JsonConvert.DeserializeObject<dynamic>(responseString);
+                        return (string?)result?.ImagePath;
+                    }
                 }
             }
             catch (Exception ex)

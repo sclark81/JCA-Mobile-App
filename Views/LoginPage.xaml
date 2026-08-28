@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JCA.Mobile.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
+
+    <Grid RowDefinitions="*, Auto, *"
+          Padding="30">
+
+        <!-- Logo / School Branding -->
+        <VerticalStackLayout Grid.Row="0"
+                             VerticalOptions="End"
+                             HorizontalOptions="Center"
+                             Spacing="10">
+            <Image Source="jca_icon.png"
+                   HeightRequest="120"
+                   WidthRequest="120"
+                   HorizontalOptions="Center" />
+            <Label Text="JCA Mobile"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource PrimaryTextColor}" />
+            <Label Text="Jefferson Christian Academy"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource SecondaryTextColor}" />
+        </VerticalStackLayout>
+
+        <!-- Login Button -->
+        <VerticalStackLayout Grid.Row="1"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="20">
+            <Button x:Name="LoginButton"
+                    Text="Sign in with Google"
+                    Clicked="OnLoginClicked"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    TextColor="White"
+                    FontSize="16"
+                    CornerRadius="8"
+                    HeightRequest="50"
+                    WidthRequest="280"
+                    HorizontalOptions="Center" />
+
+            <ActivityIndicator x:Name="LoadingIndicator"
+                               IsRunning="False"
+                               IsVisible="False"
+                               Color="{StaticResource PrimaryColor}"
+                               HorizontalOptions="Center" />
+
+            <Label x:Name="ErrorLabel"
+                   Text=""
+                   TextColor="Red"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   IsVisible="False" />
+        </VerticalStackLayout>
+
+        <!-- Footer -->
+        <Label Grid.Row="2"
+               Text="Faculty access only"
+               FontSize="12"
+               VerticalOptions="End"
+               HorizontalOptions="Center"
+               TextColor="{StaticResource SecondaryTextColor}" />
+    </Grid>
+
+</ContentPage>
