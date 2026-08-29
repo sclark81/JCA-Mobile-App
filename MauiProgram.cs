@@ -2,6 +2,8 @@ using CommunityToolkit.Maui;
 using JCA.Mobile.Services;
 using JCA.Mobile.Views;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Hosting;
+using Microsoft.Maui.Controls.Hosting;
 
 namespace JCA.Mobile;
 
@@ -12,7 +14,7 @@ public static class MauiProgram
         MauiAppBuilder builder = MauiApp.CreateBuilder();
 
         builder
-            .UseMauiApp<App, AppShell>()
+            .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
@@ -25,7 +27,7 @@ public static class MauiProgram
 #endif
 
         // Register Services
-        builder.Services.AddSingleton<ThemeService>();
+        //builder.Services.AddSingleton<ThemeService>();
         builder.Services.AddSingleton<AuthService>();
         builder.Services.AddSingleton<AnnouncementService>();
         builder.Services.AddSingleton<MaintenanceService>();

@@ -4,15 +4,17 @@ namespace JCA.Mobile;
 
 public partial class App : Application
 {
-    private readonly ThemeService _themeService;
+    //private readonly ThemeService _themeService;
     private readonly AuthService _authService;
 
-    public App(ThemeService themeService, AuthService authService)
+    public App(AuthService authService)//ThemeService themeService,
     {
         InitializeComponent();
-        _themeService = themeService;
+        //_themeService = themeService;
         _authService = authService;
-        _themeService.ApplyTheme();
+        //_themeService.ApplyTheme();
+
+        MainPage = new AppShell();
     }
 
     protected override Window CreateWindow(IActivationState? activationState)

@@ -2,7 +2,7 @@ using JCA.Mobile.Models;
 
 namespace JCA.Mobile.Services;
 
-public class ThemeService
+public class ThemeServices
 {
     public static readonly Dictionary<string, SchoolTheme> Themes = new()
     {

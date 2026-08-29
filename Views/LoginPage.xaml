@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JCA.Mobile.Views.LoginPage"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource PageBackgroundColor}">
+             BackgroundColor="{StaticResource White}">
 
     <Grid RowDefinitions="*, Auto, *"
           Padding="30">
@@ -22,7 +22,7 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
                    TextColor="{StaticResource PrimaryTextColor}" />
-            <Label Text="Jefferson Christian Academy"
+            <Label Text="Joshua Christian Academy"
                    FontSize="16"
                    HorizontalOptions="Center"
                    TextColor="{StaticResource SecondaryTextColor}" />
@@ -36,7 +36,7 @@
             <Button x:Name="LoginButton"
                     Text="Sign in with Google"
                     Clicked="OnLoginClicked"
-                    BackgroundColor="{StaticResource PrimaryColor}"
+                    BackgroundColor="{StaticResource Primary}"
                     TextColor="White"
                     FontSize="16"
                     CornerRadius="8"
@@ -47,7 +47,7 @@
             <ActivityIndicator x:Name="LoadingIndicator"
                                IsRunning="False"
                                IsVisible="False"
-                               Color="{StaticResource PrimaryColor}"
+                               Color="{StaticResource Primary}"
                                HorizontalOptions="Center" />
 
             <Label x:Name="ErrorLabel"

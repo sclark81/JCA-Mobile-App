@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:JCA.Mobile.Views"
+    x:Class="JCA.Mobile.AppShell"
     Shell.FlyoutBehavior="Disabled"
     Title="JCA Mobile">
 
@@ -16,7 +17,7 @@
     <!-- Main App TabBar (shown after authentication) -->
     <TabBar x:Name="MainTabBar"
             Route="MainPage"
-            BackgroundColor="{StaticResource PrimaryColor}">
+            Shell.BackgroundColor="{StaticResource Primary}">
 
         <Tab Title="Home" Icon="home_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
