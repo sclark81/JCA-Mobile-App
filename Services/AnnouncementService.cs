@@ -7,8 +7,8 @@ public class AnnouncementService
 {
     private readonly HttpClient _httpClient;
     private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
-         ? "http://10.0.2.2:58564/api/mobile/announcement" // Emulator host IP and HTTP port
-         : "https://localhost:58563/api/mobile/announcement"; // Standard local PC port
+         ? "http://10.0.2.2:58564/api/mobile/announcements" // Emulator host IP and HTTP port
+         : "https://localhost:58563/api/mobile/announcements"; // Standard local PC port
 
     public AnnouncementService(HttpClient httpClient)
     {
