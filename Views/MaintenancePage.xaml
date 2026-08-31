@@ -7,10 +7,6 @@
              Title="Maintenance Tickets"
              BackgroundColor="#F7F5F0">
 
-    <ContentPage.BindingContext>
-        <vm:MaintenanceViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding GoToCreateTicketCommand}" />
     </ContentPage.ToolbarItems>

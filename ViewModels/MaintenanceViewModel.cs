@@ -13,7 +13,7 @@ namespace JCA.Mobile.ViewModels
 {
     public partial class MaintenanceViewModel : ObservableObject
     {
-        private readonly MaintenanceService _service = new MaintenanceService();
+        private readonly MaintenanceService _service;
 
         [ObservableProperty]
         private ObservableCollection<MaintenanceTicket> tickets = new ObservableCollection<MaintenanceTicket>();
@@ -21,8 +21,9 @@ namespace JCA.Mobile.ViewModels
         [ObservableProperty]
         private bool isRefreshing;
 
-        public MaintenanceViewModel()
+        public MaintenanceViewModel(MaintenanceService service)
         {
+            _service = service;
             Task _ = LoadTicketsAsync();
         }
 
