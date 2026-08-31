@@ -7,7 +7,8 @@ namespace JCA.Mobile.Services
     {
         private readonly AuthService _authService;
 
-        public AuthenticatedHttpClientHandler(AuthService authService) : base(new HttpClientHandler())
+        public AuthenticatedHttpClientHandler(AuthService authService, HttpMessageHandler? innerHandler = null)
+            : base(innerHandler ?? new HttpClientHandler())
         {
             _authService = authService;
         }
