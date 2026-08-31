@@ -11,9 +11,15 @@ namespace JCA.Mobile.Services
 {
     public class MaintenanceService
     {
-        private readonly HttpClient _httpClient = new HttpClient();
-        // TODO: Update this to your production Jaguar Tools URL
-        private const string BaseUrl = "https://localhost:7251/api/mobile/maintenance";
+        private readonly HttpClient _httpClient;
+        private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
+            ? "http://10.0.2.2:58564/api/mobile/maintenance"
+            : "https://localhost:58563/api/mobile/maintenance";
+
+        public MaintenanceService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
         public async Task<List<MaintenanceTicket>> GetTicketsAsync()
         {

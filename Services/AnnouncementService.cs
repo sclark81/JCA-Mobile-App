@@ -10,29 +10,19 @@ public class AnnouncementService
          ? "http://10.0.2.2:58564/api/mobile/announcement" // Emulator host IP and HTTP port
          : "https://localhost:58563/api/mobile/announcement"; // Standard local PC port
 
-    public AnnouncementService()
+    public AnnouncementService(HttpClient httpClient)
     {
-        // If we are debugging, configure HttpClient to ignore local SSL certificate mismatches
-#if DEBUG
-        var handler = new HttpClientHandler
-        {
-            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-        };
-        _httpClient = new HttpClient(handler);
-#else
-            // Standard secure client for production
-            _httpClient = new HttpClient();
-#endif
+        _httpClient = httpClient;
     }
 
     public async Task<List<Announcement>> GetAnnouncementsAsync()
     {
         try 
         {
-            var response = await _httpClient.GetAsync(BaseUrl);
+            HttpResponseMessage response = await _httpClient.GetAsync(BaseUrl);
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+                string content = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<List<Announcement>>(content) ?? new List<Announcement>();
             }
         }

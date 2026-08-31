@@ -27,8 +27,41 @@ public static class MauiProgram
         // Register Services
         builder.Services.AddSingleton<ThemeService>();
         builder.Services.AddSingleton<AuthService>();
-        builder.Services.AddSingleton<AnnouncementService>();
-        builder.Services.AddSingleton<MaintenanceService>();
+#if DEBUG
+        builder.Services.AddSingleton<AnnouncementService>(sp =>
+        {
+            AuthService authService = sp.GetRequiredService<AuthService>();
+            HttpClientHandler sslHandler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+            };
+            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
+            return new AnnouncementService(new HttpClient(handler));
+        });
+        builder.Services.AddSingleton<MaintenanceService>(sp =>
+        {
+            AuthService authService = sp.GetRequiredService<AuthService>();
+            HttpClientHandler sslHandler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+            };
+            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
+            return new MaintenanceService(new HttpClient(handler));
+        });
+#else
+        builder.Services.AddSingleton<AnnouncementService>(sp =>
+        {
+            AuthService authService = sp.GetRequiredService<AuthService>();
+            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService);
+            return new AnnouncementService(new HttpClient(handler));
+        });
+        builder.Services.AddSingleton<MaintenanceService>(sp =>
+        {
+            AuthService authService = sp.GetRequiredService<AuthService>();
+            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService);
+            return new MaintenanceService(new HttpClient(handler));
+        });
+#endif
 
         // Register Pages
         builder.Services.AddTransient<LoginPage>();
