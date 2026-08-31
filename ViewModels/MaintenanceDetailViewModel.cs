@@ -15,7 +15,7 @@ namespace JCA.Mobile.ViewModels
     [QueryProperty(nameof(TicketId), "id")]
     public partial class MaintenanceDetailViewModel : ObservableObject
     {
-        private readonly MaintenanceService _service = new MaintenanceService();
+        private readonly MaintenanceService _service;
 
         [ObservableProperty]
         private int ticketId;
@@ -39,6 +39,11 @@ namespace JCA.Mobile.ViewModels
         private string? selectedImagePath;
 
         public List<TicketStatus> StatusOptions { get; } = Enum.GetValues(typeof(TicketStatus)).Cast<TicketStatus>().ToList();
+
+        public MaintenanceDetailViewModel(MaintenanceService service)
+        {
+            _service = service;
+        }
 
         partial void OnTicketIdChanged(int value)
         {

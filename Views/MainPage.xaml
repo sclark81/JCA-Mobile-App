@@ -1,13 +1,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:JCA.Mobile.ViewModels"
              x:Class="JCA.Mobile.Views.MainPage"
              Title="Joshua Christian Academy"
              BackgroundColor="#F7F5F0">
-
-    <ContentPage.BindingContext>
-        <vm:MainViewModel />
-    </ContentPage.BindingContext>
 
     <Grid RowDefinitions="Auto, *">
         <!-- Header: Jaguar Theme (Navy & Gold) -->

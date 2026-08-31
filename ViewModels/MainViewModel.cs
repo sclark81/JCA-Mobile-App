@@ -9,7 +9,7 @@ namespace JCA.Mobile.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-    private readonly AnnouncementService _announcementService = new();
+    private readonly AnnouncementService _announcementService;
 
     [ObservableProperty]
     private ObservableCollection<Announcement> announcements = new();
@@ -20,12 +20,11 @@ public partial class MainViewModel : ObservableObject
     public ICommand RefreshCommand { get; }
     public ICommand DismissCommand { get; }
 
-    public MainViewModel()
+    public MainViewModel(AnnouncementService announcementService)
     {
+        _announcementService = announcementService;
         RefreshCommand = new AsyncRelayCommand(LoadAnnouncementsAsync);
         DismissCommand = new RelayCommand<int>(OnDismiss);
-        
-        // Initial load
         _ = LoadAnnouncementsAsync();
     }
 
@@ -33,11 +32,11 @@ public partial class MainViewModel : ObservableObject
     {
         IsRefreshing = true;
         
-        var data = await _announcementService.GetAnnouncementsAsync();
+        List<Announcement> data = await _announcementService.GetAnnouncementsAsync();
         
         MainThread.BeginInvokeOnMainThread(() => {
             Announcements.Clear();
-            foreach (var item in data)
+            foreach (Announcement item in data)
             {
                 Announcements.Add(item);
             }
@@ -48,7 +47,7 @@ public partial class MainViewModel : ObservableObject
 
     private void OnDismiss(int id)
     {
-        var item = Announcements.FirstOrDefault(n => n.Id == id);
+        Announcement? item = Announcements.FirstOrDefault(n => n.Id == id);
         if (item != null)
         {
             Announcements.Remove(item);

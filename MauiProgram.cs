@@ -63,6 +63,12 @@ public static class MauiProgram
         });
 #endif
 
+        // Register ViewModels
+        builder.Services.AddTransient<ViewModels.MainViewModel>();
+        builder.Services.AddTransient<ViewModels.MaintenanceViewModel>();
+        builder.Services.AddTransient<ViewModels.CreateTicketViewModel>();
+        builder.Services.AddTransient<ViewModels.MaintenanceDetailViewModel>();
+
         // Register Pages
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<MainPage>();

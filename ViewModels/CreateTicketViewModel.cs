@@ -14,7 +14,7 @@ namespace JCA.Mobile.ViewModels
 {
     public partial class CreateTicketViewModel : ObservableObject
     {
-        private readonly MaintenanceService _service = new MaintenanceService();
+        private readonly MaintenanceService _service;
 
         [ObservableProperty]
         private string details = string.Empty;
@@ -46,6 +46,11 @@ namespace JCA.Mobile.ViewModels
         public List<Campus> CampusOptions { get; } = Enum.GetValues(typeof(Campus)).Cast<Campus>().ToList();
         public List<MaintenanceCategory> CategoryOptions { get; } = Enum.GetValues(typeof(MaintenanceCategory)).Cast<MaintenanceCategory>().ToList();
         public List<TicketPriority> PriorityOptions { get; } = Enum.GetValues(typeof(TicketPriority)).Cast<TicketPriority>().ToList();
+
+        public CreateTicketViewModel(MaintenanceService service)
+        {
+            _service = service;
+        }
 
         [RelayCommand]
         public async Task TakePhotoAsync()
