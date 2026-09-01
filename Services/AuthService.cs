@@ -15,6 +15,11 @@ namespace JCA.Mobile.Services
         private const string TokenExpiryKey = "token_expiry";
 
         private const string BaseUrl = "https://tools.jcadm.org";
+
+        //private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
+        // ? "http://10.0.2.2:58564" // Emulator host IP and HTTP port
+        //: "https://localhost:58563"; // Standard local PC port
+
         private const string LoginPath = "/api/auth/mobile-login";
         private const string RefreshPath = "/api/auth/refresh";
         private const string RevokePath = "/api/auth/revoke";

@@ -38,7 +38,7 @@ public static class MauiProgram
                 ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
             };
             AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
-            return new AnnouncementService(new HttpClient(handler));
+            return new AnnouncementService(new HttpClient(handler), authService);
         });
         builder.Services.AddSingleton<MaintenanceService>(sp =>
         {

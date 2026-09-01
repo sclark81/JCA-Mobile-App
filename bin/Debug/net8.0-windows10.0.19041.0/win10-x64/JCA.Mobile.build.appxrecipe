@@ -37,143 +37,143 @@
     <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>JCA.Mobile.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_icon.ico">
-      <PackagePath>jca_icon.ico</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-100.png">
-      <PackagePath>jca_iconLargeTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-125.png">
-      <PackagePath>jca_iconLargeTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-150.png">
-      <PackagePath>jca_iconLargeTile.scale-150.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-400.png">
+      <PackagePath>jca_iconLargeTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-200.png">
       <PackagePath>jca_iconLargeTile.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-400.png">
-      <PackagePath>jca_iconLargeTile.scale-400.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-150.png">
+      <PackagePath>jca_iconLargeTile.scale-150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-16.png">
-      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-125.png">
+      <PackagePath>jca_iconLargeTile.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-24.png">
-      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLargeTile.scale-100.png">
+      <PackagePath>jca_iconLargeTile.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-256.png">
-      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-32.png">
-      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-48.png">
-      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-16.png">
-      <PackagePath>jca_iconLogo.altform-unplated_targetsize-16.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-24.png">
-      <PackagePath>jca_iconLogo.altform-unplated_targetsize-24.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-256.png">
-      <PackagePath>jca_iconLogo.altform-unplated_targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-32.png">
-      <PackagePath>jca_iconLogo.altform-unplated_targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-48.png">
-      <PackagePath>jca_iconLogo.altform-unplated_targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-100.png">
-      <PackagePath>jca_iconLogo.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-125.png">
-      <PackagePath>jca_iconLogo.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-150.png">
-      <PackagePath>jca_iconLogo.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-200.png">
-      <PackagePath>jca_iconLogo.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-400.png">
-      <PackagePath>jca_iconLogo.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-16.png">
-      <PackagePath>jca_iconLogo.targetsize-16.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-24.png">
-      <PackagePath>jca_iconLogo.targetsize-24.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-256.png">
-      <PackagePath>jca_iconLogo.targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-32.png">
-      <PackagePath>jca_iconLogo.targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-48.png">
-      <PackagePath>jca_iconLogo.targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-100.png">
-      <PackagePath>jca_iconMediumTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-125.png">
-      <PackagePath>jca_iconMediumTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-150.png">
-      <PackagePath>jca_iconMediumTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-200.png">
-      <PackagePath>jca_iconMediumTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-400.png">
-      <PackagePath>jca_iconMediumTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-100.png">
-      <PackagePath>jca_iconSmallTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-125.png">
-      <PackagePath>jca_iconSmallTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-150.png">
-      <PackagePath>jca_iconSmallTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-200.png">
-      <PackagePath>jca_iconSmallTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-400.png">
-      <PackagePath>jca_iconSmallTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-100.png">
-      <PackagePath>jca_iconStoreLogo.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-125.png">
-      <PackagePath>jca_iconStoreLogo.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-150.png">
-      <PackagePath>jca_iconStoreLogo.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-200.png">
-      <PackagePath>jca_iconStoreLogo.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-400.png">
-      <PackagePath>jca_iconStoreLogo.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-100.png">
-      <PackagePath>jca_iconWideTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-125.png">
-      <PackagePath>jca_iconWideTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-150.png">
-      <PackagePath>jca_iconWideTile.scale-150.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-400.png">
+      <PackagePath>jca_iconWideTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-200.png">
       <PackagePath>jca_iconWideTile.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-400.png">
-      <PackagePath>jca_iconWideTile.scale-400.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-150.png">
+      <PackagePath>jca_iconWideTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-125.png">
+      <PackagePath>jca_iconWideTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconWideTile.scale-100.png">
+      <PackagePath>jca_iconWideTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-400.png">
+      <PackagePath>jca_iconMediumTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-200.png">
+      <PackagePath>jca_iconMediumTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-150.png">
+      <PackagePath>jca_iconMediumTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-125.png">
+      <PackagePath>jca_iconMediumTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconMediumTile.scale-100.png">
+      <PackagePath>jca_iconMediumTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-400.png">
+      <PackagePath>jca_iconSmallTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-200.png">
+      <PackagePath>jca_iconSmallTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-150.png">
+      <PackagePath>jca_iconSmallTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-125.png">
+      <PackagePath>jca_iconSmallTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconSmallTile.scale-100.png">
+      <PackagePath>jca_iconSmallTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-400.png">
+      <PackagePath>jca_iconStoreLogo.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-200.png">
+      <PackagePath>jca_iconStoreLogo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-150.png">
+      <PackagePath>jca_iconStoreLogo.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-125.png">
+      <PackagePath>jca_iconStoreLogo.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconStoreLogo.scale-100.png">
+      <PackagePath>jca_iconStoreLogo.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-256.png">
+      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-48.png">
+      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-32.png">
+      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-24.png">
+      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-lightunplated_targetsize-16.png">
+      <PackagePath>jca_iconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-256.png">
+      <PackagePath>jca_iconLogo.altform-unplated_targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-48.png">
+      <PackagePath>jca_iconLogo.altform-unplated_targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-32.png">
+      <PackagePath>jca_iconLogo.altform-unplated_targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-24.png">
+      <PackagePath>jca_iconLogo.altform-unplated_targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.altform-unplated_targetsize-16.png">
+      <PackagePath>jca_iconLogo.altform-unplated_targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-256.png">
+      <PackagePath>jca_iconLogo.targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-48.png">
+      <PackagePath>jca_iconLogo.targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-32.png">
+      <PackagePath>jca_iconLogo.targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-24.png">
+      <PackagePath>jca_iconLogo.targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.targetsize-16.png">
+      <PackagePath>jca_iconLogo.targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-400.png">
+      <PackagePath>jca_iconLogo.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-200.png">
+      <PackagePath>jca_iconLogo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-150.png">
+      <PackagePath>jca_iconLogo.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-125.png">
+      <PackagePath>jca_iconLogo.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_iconLogo.scale-100.png">
+      <PackagePath>jca_iconLogo.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\jca_icon.ico">
+      <PackagePath>jca_icon.ico</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\shawn.clark_jcadm\source\repos\sclark81\JCA-Mobile-App\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\JCA.Mobile.deps.json">
       <PackagePath>JCA.Mobile.deps.json</PackagePath>
