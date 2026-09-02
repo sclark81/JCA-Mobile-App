@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "773891945519",
+    "project_id": "jca-mobile",
+    "storage_bucket": "jca-mobile.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773891945519:android:fd137aa15b1e522c4ac2da",
+        "android_client_info": {
+          "package_name": "com.jca.mobileapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdI0vDNINyTp-nCSJjSO5VF5UNL2otfNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

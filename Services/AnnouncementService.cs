@@ -7,11 +7,11 @@ public class AnnouncementService
 {
     private readonly HttpClient _httpClient;
     private AuthService _authentication;
-    //private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
-    //     ? "http://10.0.2.2:58564/api/mobile/announcement" // Emulator host IP and HTTP port
-    //    : "https://localhost:58563/api/mobile/announcement"; // Standard local PC port
+    private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
+         ? "https://10.0.2.2:58563/api/mobile/announcement" // Emulator host IP and HTTP port
+        : "https://localhost:58563/api/mobile/announcement"; // Standard local PC port
 
-    private readonly string BaseUrl = "https://tools.jcadm.org/api/mobile/announcement";
+    //private readonly string BaseUrl = "https://tools.jcadm.org/api/mobile/announcement";
     public AnnouncementService(HttpClient httpClient, AuthService authentication)
     {
         _httpClient = httpClient;

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Headers;
 using System.Text;
@@ -125,7 +126,9 @@ namespace JCA.Mobile.Services
         {
             if (await IsTokenValidAsync())
             {
-                return await SecureStorage.GetAsync(AccessTokenKey);
+                string token = await SecureStorage.GetAsync(AccessTokenKey) ?? string.Empty;
+                Debug.WriteLine($"Access token is valid: {token}");
+                return token;
             }
 
             // Try to refresh
