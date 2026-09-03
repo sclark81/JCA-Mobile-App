@@ -25,10 +25,7 @@
 
 	<ItemGroup>
 		<!-- App Icon Configuration -->
-		<MauiIcon Include="Resources/AppIcon/jca_icon.png"
-          ForegroundFile="Resources/AppIcon/jca_icon.png"
-          ForegroundScale="0.50"
-          Color="#0A0E1A" />
+		<MauiIcon Include="Resources/AppIcon/jca_icon.png" ForegroundFile="Resources/AppIcon/jca_icon.png" ForegroundScale="0.50" Color="#0A0E1A" />
 
 		<!-- Splash Screen Configuration -->
 		<MauiSplashScreen Include="Resources\Splash\jca_splash.png" BaseSize="128,128" />
@@ -50,6 +47,7 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Plugin.FirebasePushNotification" Version="3.4.35" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.0" />
 	</ItemGroup>
 
