@@ -53,4 +53,15 @@
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.0" />
 	</ItemGroup>
 
+	<!-- Firebase Cloud Messaging packages (Android and iOS only) -->
+	<ItemGroup Condition="$(TargetFramework.Contains('-android')) Or $(TargetFramework.Contains('-ios'))">
+		<PackageReference Include="Plugin.Firebase.Core" Version="3.0.0" />
+		<PackageReference Include="Plugin.Firebase.CloudMessaging" Version="3.0.0" />
+	</ItemGroup>
+
+	<!-- Android: google-services.json (add yours from Firebase Console) -->
+	<ItemGroup Condition="$(TargetFramework.Contains('-android'))">
+		<GoogleServicesJson Include="Platforms\Android\google-services.json" Condition="Exists('Platforms\Android\google-services.json')" />
+	</ItemGroup>
+
 </Project>
