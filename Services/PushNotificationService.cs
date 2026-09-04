@@ -3,9 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-#if ANDROID || IOS
 using Plugin.Firebase.CloudMessaging;
-#endif
 
 namespace JCA.Mobile.Services
 {
@@ -19,14 +17,14 @@ namespace JCA.Mobile.Services
         private const string BaseUrl = "https://tools.jcadm.org";
 #endif
 
-        private const string RegisterPath = "/api/deviceregistration/register";
-        private const string UnregisterPath = "/api/deviceregistration/unregister";
+        private const string RegisterPath = "/api/mobile/device/register";
+        private const string UnregisterPath = "/api/mobile/device/unregister";
 
         private readonly AuthService _authService;
         private readonly HttpClient _httpClient;
-        private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
-             ? "https://10.0.2.2:58563/api/mobile/device" // Emulator host IP and HTTP port
-            : "https://localhost:58563/api/mobile/device"; // Standard local PC port
+        //private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
+        //     ? "https://10.0.2.2:58563/api/mobile/device" // Emulator host IP and HTTP port
+        //    : "https://localhost:58563/api/mobile/device"; // Standard local PC port
 
         public PushNotificationService(AuthService authService)
         {

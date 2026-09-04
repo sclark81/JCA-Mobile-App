@@ -3,9 +3,7 @@ using JCA.Mobile.Services;
 using JCA.Mobile.ViewModels;
 using JCA.Mobile.Views;
 using Microsoft.Extensions.Logging;
-#if ANDROID || IOS
 using Plugin.Firebase.Core;
-#endif
 using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Controls.Hosting;
 
@@ -19,24 +17,15 @@ namespace JCA.Mobile
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-#if ANDROID
                 .UseFirebase()
-#elif IOS
-                .UseFirebase()
-#endif
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
-                    fonts.AddFont("Roboto-Regular.ttf", "RobotoRegular");
-                    fonts.AddFont("Roboto-Light.ttf", "RobotoLight");
-                    fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
-                    fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialIconsOutlined");
                 });
 
 #if DEBUG
-        builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
         // Register Services
@@ -78,19 +67,19 @@ namespace JCA.Mobile
         });
 #endif
 
-            // ViewModels
-            builder.Services.AddTransient<LoginViewModel>();
-            builder.Services.AddTransient<DashboardViewModel>();
-            builder.Services.AddTransient<AnnouncementViewModel>();
-            builder.Services.AddTransient<AthleticsViewModel>();
-            builder.Services.AddTransient<EventDetailViewModel>();
+            // Register ViewModels
+            builder.Services.AddTransient<ViewModels.MainViewModel>();
+            builder.Services.AddTransient<ViewModels.MaintenanceViewModel>();
+            builder.Services.AddTransient<ViewModels.CreateTicketViewModel>();
+            builder.Services.AddTransient<ViewModels.MaintenanceDetailViewModel>();
 
-            // Pages
+            // Register Pages
             builder.Services.AddTransient<LoginPage>();
-            builder.Services.AddTransient<DashboardPage>();
-            builder.Services.AddTransient<AnnouncementsPage>();
-            builder.Services.AddTransient<AthleticsPage>();
-            builder.Services.AddTransient<EventDetailPage>();
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MaintenancePage>();
+            builder.Services.AddTransient<CreateTicketPage>();
+            builder.Services.AddTransient<MaintenanceDetailPage>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
