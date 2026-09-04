@@ -11,10 +11,10 @@ namespace JCA.Mobile.Services
     {
         private readonly HttpClient _httpClient;
         private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
-             ? "https://10.0.2.2:58563/api/mobile/announcement" // Emulator host IP and HTTP port
-            : "https://localhost:58563/api/mobile/announcement"; // Standard local PC port
+             ? "https://10.0.2.2:58563/api/mobile/device" // Emulator host IP and HTTP port
+            : "https://localhost:58563/api/mobile/device"; // Standard local PC port
 
-        //private readonly string BaseUrl = "https://tools.jcadm.org/api/mobile/announcement";
+        //private readonly string BaseUrl = "https://tools.jcadm.org/api/mobile/device";
         public PushNotificationService(HttpClient httpClient)
         {
             _httpClient = httpClient;
