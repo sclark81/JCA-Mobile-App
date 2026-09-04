@@ -1,6 +1,9 @@
+using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using JCA.Mobile.Models;
 using Newtonsoft.Json;
 
@@ -13,11 +16,14 @@ namespace JCA.Mobile.Services
         private const string UserEmailKey = "user_email";
         private const string UserNameKey = "user_name";
         private const string TokenExpiryKey = "token_expiry";
+        private const string FcmTokenKey = "fcm_token";
 
         private const string BaseUrl = "https://tools.jcadm.org";
         private const string LoginPath = "/api/auth/mobile-login";
         private const string RefreshPath = "/api/auth/refresh";
         private const string RevokePath = "/api/auth/revoke";
+        private const string FcmRegisterPath = "/api/deviceregistration/register";
+        private const string FcmUnregisterPath = "/api/deviceregistration/unregister";
         private const string CallbackScheme = "com.jca.mobileapp";
 
         private readonly HttpClient _httpClient;
@@ -101,6 +107,9 @@ namespace JCA.Mobile.Services
                     DateTime expiry = DateTime.UtcNow.AddSeconds(seconds);
                     await SecureStorage.SetAsync(TokenExpiryKey, expiry.Ticks.ToString());
                 }
+
+                // Register device for push notifications (non-blocking)
+                _ = RefreshDeviceRegistrationAsync();
 
                 return true;
             }
@@ -187,6 +196,9 @@ namespace JCA.Mobile.Services
         {
             try
             {
+                // Unregister FCM token from server before clearing credentials
+                await UnregisterFcmTokenAsync();
+
                 string refreshToken = await SecureStorage.GetAsync(RefreshTokenKey) ?? string.Empty;
                 if (!string.IsNullOrEmpty(refreshToken))
                 {
@@ -209,6 +221,108 @@ namespace JCA.Mobile.Services
                 SecureStorage.Remove(UserEmailKey);
                 SecureStorage.Remove(UserNameKey);
                 SecureStorage.Remove(TokenExpiryKey);
+                SecureStorage.Remove(FcmTokenKey);
+            }
+        }
+
+        /// <summary>
+        /// Gets the current FCM token and registers it with the server.
+        /// Called after login and when the FCM token is refreshed by the platform.
+        /// </summary>
+        public async Task RefreshDeviceRegistrationAsync()
+        {
+            try
+            {
+#if ANDROID || IOS
+                await Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+                string fcmToken = await Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+
+                if (string.IsNullOrEmpty(fcmToken))
+                {
+                    System.Diagnostics.Debug.WriteLine("FCM: Token is empty, skipping registration.");
+                    return;
+                }
+
+                // Skip if token has not changed
+                string? storedToken = await SecureStorage.GetAsync(FcmTokenKey);
+                if (storedToken == fcmToken)
+                {
+                    System.Diagnostics.Debug.WriteLine("FCM: Token unchanged, skipping registration.");
+                    return;
+                }
+
+                await SecureStorage.SetAsync(FcmTokenKey, fcmToken);
+
+                // Get a valid access token for the API call
+                string? accessToken = await GetValidAccessTokenAsync();
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    System.Diagnostics.Debug.WriteLine("FCM: No valid access token, skipping registration.");
+                    return;
+                }
+
+                string platform = DeviceInfo.Current.Platform == DevicePlatform.Android ? "Android" : "iOS";
+                string deviceDescription = $"{DeviceInfo.Current.Manufacturer} {DeviceInfo.Current.Model}";
+
+                object payload = new { fcmToken, deviceInfo = deviceDescription, platform };
+                string json = JsonConvert.SerializeObject(payload);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
+                    $"{BaseUrl}{FcmRegisterPath}")
+                {
+                    Content = content
+                };
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                HttpResponseMessage response = await _httpClient.SendAsync(request);
+
+                System.Diagnostics.Debug.WriteLine(
+                    $"FCM: Device registration {(response.IsSuccessStatusCode ? "succeeded" : "failed")} - {response.StatusCode}");
+#endif
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"FCM: Registration error - {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Unregisters the FCM token from the server. Called during logout.
+        /// </summary>
+        private async Task UnregisterFcmTokenAsync()
+        {
+            try
+            {
+                string? fcmToken = await SecureStorage.GetAsync(FcmTokenKey);
+                if (string.IsNullOrEmpty(fcmToken))
+                {
+                    return;
+                }
+
+                string? accessToken = await SecureStorage.GetAsync(AccessTokenKey);
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    return;
+                }
+
+                object payload = new { fcmToken };
+                string json = JsonConvert.SerializeObject(payload);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
+                    $"{BaseUrl}{FcmUnregisterPath}")
+                {
+                    Content = content
+                };
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                await _httpClient.SendAsync(request);
+                System.Diagnostics.Debug.WriteLine("FCM: Device unregistered.");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"FCM: Unregister error - {ex.Message}");
             }
         }
 
