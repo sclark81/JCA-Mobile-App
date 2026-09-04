@@ -1,81 +1,62 @@
 using CommunityToolkit.Maui;
 using JCA.Mobile.Services;
+using JCA.Mobile.ViewModels;
 using JCA.Mobile.Views;
 using Microsoft.Extensions.Logging;
+#if ANDROID || IOS
+using Plugin.Firebase.Core;
+#endif
 
-namespace JCA.Mobile;
-
-public static class MauiProgram
+namespace JCA.Mobile
 {
-    public static MauiApp CreateMauiApp()
+    public static class MauiProgram
     {
-        MauiAppBuilder builder = MauiApp.CreateBuilder();
+        public static MauiApp CreateMauiApp()
+        {
+            MauiAppBuilder builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+#if ANDROID
+                .UseFirebase()
+#elif IOS
+                .UseFirebase()
+#endif
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
+                    fonts.AddFont("Roboto-Regular.ttf", "RobotoRegular");
+                    fonts.AddFont("Roboto-Light.ttf", "RobotoLight");
+                    fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
+                    fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialIconsOutlined");
+                });
 
-        builder
-            .UseMauiApp<App, AppShell>()
-            .UseMauiCommunityToolkit()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
+            // Services
+            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddSingleton<AnnouncementService>();
+            builder.Services.AddTransient<AthleticsService>();
+
+            // ViewModels
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<DashboardViewModel>();
+            builder.Services.AddTransient<AnnouncementViewModel>();
+            builder.Services.AddTransient<AthleticsViewModel>();
+            builder.Services.AddTransient<EventDetailViewModel>();
+
+            // Pages
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<DashboardPage>();
+            builder.Services.AddTransient<AnnouncementsPage>();
+            builder.Services.AddTransient<AthleticsPage>();
+            builder.Services.AddTransient<EventDetailPage>();
 
 #if DEBUG
-        builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
-        // Register Services
-        builder.Services.AddSingleton<ThemeService>();
-        builder.Services.AddSingleton<AuthService>();
-#if DEBUG
-        builder.Services.AddSingleton<AnnouncementService>(sp =>
-        {
-            AuthService authService = sp.GetRequiredService<AuthService>();
-            HttpClientHandler sslHandler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-            };
-            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
-            return new AnnouncementService(new HttpClient(handler));
-        });
-        builder.Services.AddSingleton<MaintenanceService>(sp =>
-        {
-            AuthService authService = sp.GetRequiredService<AuthService>();
-            HttpClientHandler sslHandler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-            };
-            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
-            return new MaintenanceService(new HttpClient(handler));
-        });
-#else
-        builder.Services.AddSingleton<AnnouncementService>(sp =>
-        {
-            AuthService authService = sp.GetRequiredService<AuthService>();
-            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService);
-            return new AnnouncementService(new HttpClient(handler));
-        });
-        builder.Services.AddSingleton<MaintenanceService>(sp =>
-        {
-            AuthService authService = sp.GetRequiredService<AuthService>();
-            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService);
-            return new MaintenanceService(new HttpClient(handler));
-        });
-#endif
-
-        // Register ViewModels
-        builder.Services.AddTransient<ViewModels.MainViewModel>();
-        builder.Services.AddTransient<ViewModels.MaintenanceViewModel>();
-        builder.Services.AddTransient<ViewModels.CreateTicketViewModel>();
-        builder.Services.AddTransient<ViewModels.MaintenanceDetailViewModel>();
-
-        // Register Pages
-        builder.Services.AddTransient<LoginPage>();
-        builder.Services.AddTransient<MainPage>();
-        builder.Services.AddTransient<MaintenancePage>();
-        builder.Services.AddTransient<CreateTicketPage>();
-        builder.Services.AddTransient<MaintenanceDetailPage>();
-
-        return builder.Build();
+            return builder.Build();
+        }
     }
 }
