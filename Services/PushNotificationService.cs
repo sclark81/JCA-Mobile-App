@@ -1,6 +1,5 @@
 using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -44,8 +43,21 @@ namespace JCA.Mobile.Services
         }
 
         /// <summary>
+        /// Subscribes to FCM notification-received, notification-tapped, and token-refresh events.
+        /// Call once at app startup after Firebase is initialized.
+        /// </summary>
+        public void SubscribeToNotifications()
+        {
+#if ANDROID || IOS
+            CrossFirebaseCloudMessaging.Current.NotificationReceived += OnNotificationReceived;
+            CrossFirebaseCloudMessaging.Current.NotificationTapped += OnNotificationTapped;
+            CrossFirebaseCloudMessaging.Current.TokenChanged += OnTokenChanged;
+#endif
+        }
+
+        /// <summary>
         /// Gets the current FCM token and registers it with the server.
-        /// Call this after successful login or token refresh.
+        /// Call after successful login.
         /// </summary>
         public async Task RefreshDeviceRegistrationAsync()
         {
@@ -57,37 +69,31 @@ namespace JCA.Mobile.Services
 
                 if (string.IsNullOrEmpty(fcmToken))
                 {
-                    System.Diagnostics.Debug.WriteLine("PushNotification: FCM token is empty.");
+                    System.Diagnostics.Debug.WriteLine("FCM: Token is empty, skipping registration.");
                     return;
                 }
 
-                // Check if token has changed
                 string? storedToken = await SecureStorage.GetAsync(FcmTokenKey);
                 if (storedToken == fcmToken)
                 {
-                    System.Diagnostics.Debug.WriteLine("PushNotification: Token unchanged, skipping registration.");
+                    System.Diagnostics.Debug.WriteLine("FCM: Token unchanged, skipping registration.");
                     return;
                 }
 
-                // Store the new token locally
                 await SecureStorage.SetAsync(FcmTokenKey, fcmToken);
-
-                // Register with the server
                 await RegisterTokenWithServerAsync(fcmToken);
 #else
-                System.Diagnostics.Debug.WriteLine("PushNotification: FCM not supported on this platform.");
                 await Task.CompletedTask;
 #endif
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"PushNotification: Registration error - {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"FCM: Registration error - {ex.Message}");
             }
         }
 
         /// <summary>
-        /// Unregisters the current device from push notifications on the server.
-        /// Call this on logout.
+        /// Clears the device FCM token from the server. Call on logout.
         /// </summary>
         public async Task UnregisterDeviceAsync()
         {
@@ -99,26 +105,25 @@ namespace JCA.Mobile.Services
                     return;
                 }
 
-                string json = JsonConvert.SerializeObject(new { fcmToken });
+                object payload = new { fcmToken };
+                string json = JsonConvert.SerializeObject(payload);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await _httpClient.PostAsync(
-                    BaseUrl + UnregisterPath, content);
+                HttpResponseMessage response = await _httpClient.PostAsync(BaseUrl + UnregisterPath, content);
 
                 if (response.IsSuccessStatusCode)
                 {
                     SecureStorage.Remove(FcmTokenKey);
-                    System.Diagnostics.Debug.WriteLine("PushNotification: Device unregistered successfully.");
+                    System.Diagnostics.Debug.WriteLine("FCM: Device unregistered.");
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine(
-                        $"PushNotification: Unregister failed - {response.StatusCode}");
+                    System.Diagnostics.Debug.WriteLine($"FCM: Unregister failed - {response.StatusCode}");
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"PushNotification: Unregister error - {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"FCM: Unregister error - {ex.Message}");
             }
         }
 
@@ -126,58 +131,60 @@ namespace JCA.Mobile.Services
         {
             try
             {
-                string platform = DeviceInfo.Current.Platform == DevicePlatform.Android
-                    ? "Android"
-                    : DeviceInfo.Current.Platform == DevicePlatform.iOS
-                        ? "iOS"
-                        : "Unknown";
+                string platform = DeviceInfo.Current.Platform == DevicePlatform.Android ? "Android" : "iOS";
 
-                string deviceInfo = $"{DeviceInfo.Current.Manufacturer} {DeviceInfo.Current.Model}";
-
-                object payload = new
-                {
-                    fcmToken,
-                    deviceInfo,
-                    platform
-                };
-
+                object payload = new { fcmToken, platform };
                 string json = JsonConvert.SerializeObject(payload);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await _httpClient.PostAsync(
-                    BaseUrl + RegisterPath, content);
+                HttpResponseMessage response = await _httpClient.PostAsync(BaseUrl + RegisterPath, content);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    System.Diagnostics.Debug.WriteLine("PushNotification: Device registered successfully.");
-                }
-                else
-                {
-                    string body = await response.Content.ReadAsStringAsync();
-                    System.Diagnostics.Debug.WriteLine(
-                        $"PushNotification: Registration failed - {response.StatusCode}: {body}");
-                }
+                System.Diagnostics.Debug.WriteLine(
+                    $"FCM: Device registration {(response.IsSuccessStatusCode ? "succeeded" : "failed")} - {response.StatusCode}");
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(
-                    $"PushNotification: Server registration error - {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"FCM: Server registration error - {ex.Message}");
             }
         }
 
 #if ANDROID || IOS
-        /// <summary>
-        /// Subscribes to the FCM token refresh event to auto-re-register when the token changes.
-        /// </summary>
-        public void SubscribeToTokenRefresh()
+        private void OnNotificationReceived(object? sender, FCMNotificationReceivedEventArgs args)
         {
-            CrossFirebaseCloudMessaging.Current.TokenChanged += async (sender, args) =>
+            string title = args.Notification?.Title ?? "New Announcement";
+            string body = args.Notification?.Body ?? string.Empty;
+
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
-                System.Diagnostics.Debug.WriteLine("PushNotification: Token refreshed, re-registering.");
-                string newToken = args.Token;
-                await SecureStorage.SetAsync(FcmTokenKey, newToken);
-                await RegisterTokenWithServerAsync(newToken);
-            };
+                if (Application.Current?.MainPage != null)
+                {
+                    bool navigate = await Application.Current.MainPage.DisplayAlert(
+                        title, body, "View", "Dismiss");
+
+                    if (navigate)
+                    {
+                        // TODO: Update route to //AnnouncementsPage once registered in AppShell.xaml
+                        await Shell.Current.GoToAsync("//MainPage");
+                    }
+                }
+            });
+        }
+
+        private void OnNotificationTapped(object? sender, FCMNotificationTappedEventArgs args)
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                // TODO: Update route to //AnnouncementsPage once registered in AppShell.xaml
+                await Shell.Current.GoToAsync("//MainPage");
+            });
+        }
+
+        private async void OnTokenChanged(object? sender, FCMTokenChangedEventArgs args)
+        {
+            System.Diagnostics.Debug.WriteLine("FCM: Token refreshed, re-registering.");
+            string newToken = args.Token;
+            await SecureStorage.SetAsync(FcmTokenKey, newToken);
+            await RegisterTokenWithServerAsync(newToken);
         }
 #endif
     }
