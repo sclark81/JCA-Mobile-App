@@ -3,9 +3,16 @@ using JCA.Mobile.Services;
 using JCA.Mobile.ViewModels;
 using JCA.Mobile.Views;
 using Microsoft.Extensions.Logging;
-using Plugin.Firebase.Core;
 using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.LifecycleEvents;
+
+
+#if IOS
+using Plugin.Firebase.Core.Platforms.iOS;
+#elif ANDROID
+using Plugin.Firebase.Core.Platforms.Android;
+#endif
 
 namespace JCA.Mobile
 {
@@ -17,41 +24,55 @@ namespace JCA.Mobile
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .UseFirebase()
+                //.UseFirebase()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                })
+                .ConfigureLifecycleEvents(events =>
+                {
+#if IOS
+                    events.AddiOS(iOS => iOS.WillFinishLaunching((app, launchOptions) =>
+                    {
+                        CrossFirebase.Initialize();
+                        return false;
+                    }));
+#elif ANDROID
+                    events.AddAndroid(android => android.OnCreate((activity, _) =>
+                    {
+                        CrossFirebase.Initialize(activity);
+                    }));
+#endif
                 });
-
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
 
-        // Register Services
-        //builder.Services.AddSingleton<ThemeService>();
-        builder.Services.AddSingleton<AuthService>();
+            // Register Services
+            //builder.Services.AddSingleton<ThemeService>();
+            builder.Services.AddSingleton<AuthService>();
 #if DEBUG
-        builder.Services.AddSingleton<AnnouncementService>(sp =>
-        {
-            AuthService authService = sp.GetRequiredService<AuthService>();
-            HttpClientHandler sslHandler = new HttpClientHandler
+            builder.Services.AddSingleton<AnnouncementService>(sp =>
             {
-                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-            };
-            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
-            return new AnnouncementService(new HttpClient(handler), authService);
-        });
-        builder.Services.AddSingleton<MaintenanceService>(sp =>
-        {
-            AuthService authService = sp.GetRequiredService<AuthService>();
-            HttpClientHandler sslHandler = new HttpClientHandler
+                AuthService authService = sp.GetRequiredService<AuthService>();
+                HttpClientHandler sslHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                };
+                AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
+                return new AnnouncementService(new HttpClient(handler), authService);
+            });
+            builder.Services.AddSingleton<MaintenanceService>(sp =>
             {
-                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-            };
-            AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
-            return new MaintenanceService(new HttpClient(handler));
-        });
+                AuthService authService = sp.GetRequiredService<AuthService>();
+                HttpClientHandler sslHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                };
+                AuthenticatedHttpClientHandler handler = new AuthenticatedHttpClientHandler(authService, sslHandler);
+                return new MaintenanceService(new HttpClient(handler));
+            });
 #else
         builder.Services.AddSingleton<AnnouncementService>(sp =>
         {

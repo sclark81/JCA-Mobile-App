@@ -1,5 +1,11 @@
 using JCA.Mobile.Services;
 
+#if ANDROID || IOS
+using Plugin.Firebase.CloudMessaging;
+using Plugin.Firebase.CloudMessaging.EventArgs;
+#endif
+
+
 namespace JCA.Mobile;
 
 public partial class App : Application
