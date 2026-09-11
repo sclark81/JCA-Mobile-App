@@ -10,18 +10,17 @@ namespace JCA.Mobile;
 
 public partial class App : Application
 {
-    private readonly AuthService _authService;
+    private readonly PushNotificationService _pushNotificationService;
 
-    public App(AuthService authService)//ThemeService themeService,
+    public App(PushNotificationService pushNotificationService)//ThemeService themeService,
     {
         InitializeComponent();
-        //_themeService = themeService;
-        _authService = authService;
-        //_themeService.ApplyTheme();
-
+#if ANDROID || IOS
+        pushNotificationService.SubscribeToNotifications();
+#endif
         //MainPage = new AppShell();
 
-        _authService = new AuthService();
+        //_pushNotificationService = new PushNotificationService();
 
 #if ANDROID || IOS
         // Subscribe to FCM token refresh events so re-registration happens automatically
