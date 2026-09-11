@@ -20,7 +20,9 @@ namespace JCA.Mobile.Services
         private const string FcmTokenKey = "fcm_token";
 
 #if DEBUG
-        private const string BaseUrl = "https://10.0.2.2:7777";
+        private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
+          ? "https://10.0.2.2:58563" // Emulator host IP and HTTP port
+         : "https://localhost:58563"; // Standard local PC port
 #else
         private const string BaseUrl = "https://tools.jcadm.org";
 #endif

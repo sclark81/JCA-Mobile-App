@@ -52,6 +52,7 @@ namespace JCA.Mobile
             // Register Services
             //builder.Services.AddSingleton<ThemeService>();
             builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddSingleton<PushNotificationService>();
 #if DEBUG
             builder.Services.AddSingleton<AnnouncementService>(sp =>
             {

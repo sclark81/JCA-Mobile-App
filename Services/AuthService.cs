@@ -21,14 +21,14 @@ namespace JCA.Mobile.Services
         private const string BaseUrl = "https://tools.jcadm.org";
 
         //private readonly string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
-        // ? "http://10.0.2.2:58564" // Emulator host IP and HTTP port
+        // ? "https://10.0.2.2:58563" // Emulator host IP and HTTP port
         //: "https://localhost:58563"; // Standard local PC port
 
         private const string LoginPath = "/api/auth/mobile-login";
         private const string RefreshPath = "/api/auth/refresh";
         private const string RevokePath = "/api/auth/revoke";
-        private const string FcmRegisterPath = "/api/deviceregistration/register";
-        private const string FcmUnregisterPath = "/api/deviceregistration/unregister";
+        private const string FcmRegisterPath = "/api/mobile/device/register";
+        private const string FcmUnregisterPath = "/api/mobile/device/unregister";
         private const string CallbackScheme = "com.jca.mobileapp";
 
         private readonly HttpClient _httpClient;
