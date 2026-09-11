@@ -27,7 +27,6 @@ namespace JCA.Mobile.Services
         private const string LoginPath = "/api/auth/mobile-login";
         private const string RefreshPath = "/api/auth/refresh";
         private const string RevokePath = "/api/auth/revoke";
-        private const string FcmRegisterPath = "/api/mobile/device/register";
         private const string FcmUnregisterPath = "/api/mobile/device/unregister";
         private const string CallbackScheme = "com.jca.mobileapp";
 
@@ -112,9 +111,6 @@ namespace JCA.Mobile.Services
                     DateTime expiry = DateTime.UtcNow.AddSeconds(seconds);
                     await SecureStorage.SetAsync(TokenExpiryKey, expiry.Ticks.ToString());
                 }
-
-                // Register device for push notifications (non-blocking)
-                _ = RefreshDeviceRegistrationAsync();
 
                 return true;
             }
@@ -229,68 +225,6 @@ namespace JCA.Mobile.Services
                 SecureStorage.Remove(UserNameKey);
                 SecureStorage.Remove(TokenExpiryKey);
                 SecureStorage.Remove(FcmTokenKey);
-            }
-        }
-
-        /// <summary>
-        /// Gets the current FCM token and registers it with the server.
-        /// Called after login and when the FCM token is refreshed by the platform.
-        /// </summary>
-        public async Task RefreshDeviceRegistrationAsync()
-        {
-            try
-            {
-#if ANDROID || IOS
-                await Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
-                string fcmToken = await Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.GetTokenAsync();
-
-                if (string.IsNullOrEmpty(fcmToken))
-                {
-                    System.Diagnostics.Debug.WriteLine("FCM: Token is empty, skipping registration.");
-                    return;
-                }
-
-                // Skip if token has not changed
-                string? storedToken = await SecureStorage.GetAsync(FcmTokenKey);
-                if (storedToken == fcmToken)
-                {
-                    System.Diagnostics.Debug.WriteLine("FCM: Token unchanged, skipping registration.");
-                    return;
-                }
-
-                await SecureStorage.SetAsync(FcmTokenKey, fcmToken);
-
-                // Get a valid access token for the API call
-                string? accessToken = await GetValidAccessTokenAsync();
-                if (string.IsNullOrEmpty(accessToken))
-                {
-                    System.Diagnostics.Debug.WriteLine("FCM: No valid access token, skipping registration.");
-                    return;
-                }
-
-                string platform = DeviceInfo.Current.Platform == DevicePlatform.Android ? "Android" : "iOS";
-                string deviceDescription = $"{DeviceInfo.Current.Manufacturer} {DeviceInfo.Current.Model}";
-
-                object payload = new { fcmToken, deviceInfo = deviceDescription, platform };
-                string json = JsonConvert.SerializeObject(payload);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
-                    $"{BaseUrl}{FcmRegisterPath}")
-                {
-                    Content = content
-                };
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-                HttpResponseMessage response = await _httpClient.SendAsync(request);
-
-                System.Diagnostics.Debug.WriteLine(
-                    $"FCM: Device registration {(response.IsSuccessStatusCode ? "succeeded" : "failed")} - {response.StatusCode}");
-#endif
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"FCM: Registration error - {ex.Message}");
             }
         }
 
