@@ -19,7 +19,7 @@ public partial class App : Application
         _authService = authService;
         //_themeService.ApplyTheme();
 
-        MainPage = new AppShell();
+        //MainPage = new AppShell();
 
         _authService = new AuthService();
 
