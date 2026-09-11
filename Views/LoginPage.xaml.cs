@@ -28,7 +28,7 @@ namespace JCA.Mobile.Views
                 if (success)
                 {
 #if ANDROID || IOS
-                    await _pushNotificationService.RegisterDeviceAsync();
+                    await _pushNotificationService.RefreshDeviceRegistrationAsync();
 #endif
                     // Navigate to the main app shell
                     await Shell.Current.GoToAsync("//MainPage");
