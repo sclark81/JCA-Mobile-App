@@ -5,11 +5,13 @@ namespace JCA.Mobile.Views
     public partial class LoginPage : ContentPage
     {
         private readonly AuthService _authService;
+        private readonly PushNotificationService _pushNotificationService;
 
-        public LoginPage(AuthService authService)
+        public LoginPage(AuthService authService, PushNotificationService pushNotificationService)
         {
             InitializeComponent();
             _authService = authService;
+            _pushNotificationService = pushNotificationService;
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -25,6 +27,9 @@ namespace JCA.Mobile.Views
 
                 if (success)
                 {
+#if ANDROID || IOS
+                    await _pushNotificationService.RegisterDeviceAsync();
+#endif
                     // Navigate to the main app shell
                     await Shell.Current.GoToAsync("//MainPage");
                 }
