@@ -89,6 +89,9 @@ namespace JCA.Mobile
         });
 #endif
 
+            // Register Shell
+            builder.Services.AddTransient<AppShell>();
+
             // Register ViewModels
             builder.Services.AddTransient<ViewModels.MainViewModel>();
             builder.Services.AddTransient<ViewModels.MaintenanceViewModel>();

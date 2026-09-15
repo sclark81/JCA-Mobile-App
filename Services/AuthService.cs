@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using JCA.Mobile.Models;
@@ -275,6 +278,33 @@ namespace JCA.Mobile.Services
         public async Task<string> GetUserNameAsync()
         {
             return await SecureStorage.GetAsync(UserNameKey) ?? string.Empty;
+        }
+
+        /// <summary>
+        /// Decodes the stored JWT access token and returns the list of role claims.
+        /// Roles are Google Workspace group names embedded by the server at login/refresh.
+        /// </summary>
+        public async Task<IList<string>> GetUserRolesAsync()
+        {
+            string accessToken = await SecureStorage.GetAsync(AccessTokenKey) ?? string.Empty;
+            if (string.IsNullOrEmpty(accessToken))
+            {
+                return new List<string>();
+            }
+
+            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+            if (!handler.CanReadToken(accessToken))
+            {
+                return new List<string>();
+            }
+
+            JwtSecurityToken jwt = handler.ReadJwtToken(accessToken);
+            List<string> roles = jwt.Claims
+                .Where(c => c.Type == ClaimTypes.Role)
+                .Select(c => c.Value)
+                .ToList();
+
+            return roles;
         }
     }
 }

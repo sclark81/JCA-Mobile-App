@@ -30,6 +30,9 @@ namespace JCA.Mobile.Views
 #if ANDROID || IOS
                     await _pushNotificationService.RefreshDeviceRegistrationAsync();
 #endif
+                    // Apply role-based tab visibility before navigating
+                    await ((AppShell)Shell.Current).ApplyUserRolesAsync();
+
                     // Navigate to the main app shell
                     await Shell.Current.GoToAsync("//MainPage");
                 }

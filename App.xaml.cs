@@ -4,8 +4,11 @@ namespace JCA.Mobile;
 
 public partial class App : Application
 {
-    public App(PushNotificationService pushNotificationService)
+    private readonly AppShell _appShell;
+
+    public App(PushNotificationService pushNotificationService, AppShell appShell)
     {
+        _appShell = appShell;
         InitializeComponent();
 
 #if ANDROID || IOS
@@ -15,7 +18,7 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        Window window = new Window(new AppShell())
+        Window window = new Window(_appShell)
         {
             Width = 430,
             Height = 920

@@ -23,7 +23,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>
 
-        <Tab Title="Maintenance" Icon="wrench_icon.png">
+        <Tab x:Name="MaintenanceTab" Title="Maintenance" Icon="wrench_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:MaintenancePage}" />
         </Tab>
 
